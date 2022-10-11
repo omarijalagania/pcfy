@@ -1,5 +1,5 @@
 <script>
-import TheButton from "./shared/TheButton.vue"
+import TheButton from "../components/shared/TheButton.vue"
 export default {
   components: {
     TheButton,
@@ -13,8 +13,8 @@ export default {
       <img alt="Vue logo" src="../assets/images/logo.png" />
       <img class="mt-44" src="../assets/images/main.png" alt="main image" />
       <div class="mt-28 flex flex-col space-y-6">
-        <TheButton name="ᲩᲐᲜᲐᲬᲔᲠᲘᲡ ᲓᲐᲛᲐᲢᲔᲑᲐ" />
-        <TheButton name="ᲩᲐᲜᲐᲬᲔᲠᲘᲡ ᲓᲐᲛᲐᲢᲔᲑᲐ" />
+        <TheButton width="w-96" name="ᲩᲐᲜᲐᲬᲔᲠᲘᲡ ᲓᲐᲛᲐᲢᲔᲑᲐ" />
+        <TheButton width="w-96" name="ᲩᲐᲜᲐᲬᲔᲠᲔᲑᲘᲡ ᲡᲘᲐ" />
       </div>
     </div>
   </div>

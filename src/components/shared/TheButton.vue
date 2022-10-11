@@ -1,11 +1,11 @@
 <script>
 export default {
-  props: ["name"],
+  props: ["name", "width"],
 }
 </script>
 
 <template>
-  <button class="w-96 h-14 bg-blue-400 rounded-md text-white">
+  <button :class="width" class="h-14 text-xl bg-blue-400 rounded-md text-white">
     {{ name }}
   </button>
 </template>
