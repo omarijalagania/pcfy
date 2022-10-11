@@ -1,18 +1,45 @@
 <script>
 import TheLayout from "../components/shared/TheLayout.vue"
-import TheInput from "../components/shared/TheInput.vue"
 import { getTeams, getPositions } from "../services/axios"
 import TheButton from "@/components/shared/TheButton.vue"
+import useVuelidate from "@vuelidate/core"
+import { required, helpers, minLength } from "@vuelidate/validators"
+
+const geo = helpers.regex("geo", /[Ⴀ-\u10fe]$/)
+
 export default {
   components: {
     TheLayout,
-    TheInput,
+
     TheButton,
+  },
+  setup() {
+    return { v$: useVuelidate() }
   },
   data() {
     return {
       teams: [],
       positions: [],
+      name: "",
+      surname: "",
+    }
+  },
+  methods: {
+    submitData() {
+      console.log(this.name)
+    },
+  },
+  validations() {
+    return {
+      name: {
+        required: helpers.withMessage("სახელი სავალდებულოა", required),
+        minLength: helpers.withMessage("მინიმუმ 2 სიმბოლო", minLength(2)),
+        geo: helpers.withMessage("მხოლოდ ქართული ასოები", geo),
+      },
+      surname: {
+        required: helpers.withMessage("სახელი სავალდებულოა", required),
+        minLength: helpers.withMessage("მინიმუმ 2 სიმბოლო", minLength(2)),
+      },
     }
   },
   async created() {
@@ -29,20 +56,50 @@ export default {
 <template>
   <TheLayout>
     <section class="bg-white w-[1226px] flex justify-center h-[973px]">
-      <div class="w-[1024px] relative px-10 py-20">
+      <form
+        @submit.prevent="submitData"
+        class="w-[1024px] relative px-10 py-20"
+      >
         <div class="flex justify-between items-center">
           <div class="flex flex-col space-y-1">
             <label class="font-medium text-lg" for="name">სახელი</label>
-            <TheInput placeholder="გრიშა" type="text" id="name" name="name" />
+            <input
+              class="h-[60px] w-[360px] border-blue-400 border-2 px-4 outline-none rounded-md"
+              v-model="v$.name.$model"
+              placeholder="გრიშა"
+              type="text"
+              id="name"
+              name="name"
+            />
+            <div class="h-1">
+              <p
+                v-for="(error, index) of v$.name.$errors"
+                :key="index"
+                class="font-light text-sm text-gray-500"
+              >
+                {{ error.$message }}
+              </p>
+            </div>
           </div>
           <div class="flex flex-col space-y-1">
             <label class="font-medium text-lg" for="surname">გვარი</label>
-            <TheInput
+            <input
+              class="h-[60px] w-[360px] border-blue-400 border-2 px-4 outline-none rounded-md"
               placeholder="ბაგრატიონი"
+              v-model="v$.surname.$model"
               type="text"
               id="surname"
               name="surname"
             />
+            <div class="h-1">
+              <p
+                v-for="(error, index) of v$.surname.$errors"
+                :key="index"
+                class="font-light text-sm text-gray-500"
+              >
+                {{ error.$message }}
+              </p>
+            </div>
           </div>
         </div>
         <select class="h-[60px] bg-lightGray my-[52px] w-full">
@@ -61,8 +118,8 @@ export default {
         </select>
         <div class="flex flex-col space-y-1">
           <label class="font-medium text-lg" for="email">მეილი</label>
-          <TheInput
-            inputClass="!w-full"
+          <input
+            class="h-[60px] w-full border-blue-400 border-2 px-4 outline-none rounded-md"
             placeholder="grish666@redberry.ge"
             type="email"
             id="email"
@@ -74,8 +131,8 @@ export default {
           <label class="font-medium text-lg" for="phone_number"
             >ტელეფონის ნომერი</label
           >
-          <TheInput
-            inputClass="!w-full"
+          <input
+            class="h-[60px] w-full border-blue-400 border-2 px-4 outline-none rounded-md"
             placeholder="+995 598 00 07 01"
             type="text"
             id="phone_number"
@@ -85,7 +142,7 @@ export default {
         <div class="mt-[150px] absolute px-10 right-0">
           <TheButton width="w-[176px]" name="შემდეგი" />
         </div>
-      </div>
+      </form>
     </section>
   </TheLayout>
 </template>
