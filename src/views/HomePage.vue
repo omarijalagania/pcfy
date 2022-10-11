@@ -4,6 +4,11 @@ export default {
   components: {
     TheButton,
   },
+  methods: {
+    handleButtonClick() {
+      this.$router.push("/client-info")
+    },
+  },
 }
 </script>
 
@@ -13,7 +18,11 @@ export default {
       <img alt="Vue logo" src="../assets/images/logo.png" />
       <img class="mt-44" src="../assets/images/main.png" alt="main image" />
       <div class="mt-28 flex flex-col space-y-6">
-        <TheButton width="w-96" name="ᲩᲐᲜᲐᲬᲔᲠᲘᲡ ᲓᲐᲛᲐᲢᲔᲑᲐ" />
+        <TheButton
+          @click="handleButtonClick"
+          width="w-96"
+          name="ᲩᲐᲜᲐᲬᲔᲠᲘᲡ ᲓᲐᲛᲐᲢᲔᲑᲐ"
+        />
         <TheButton width="w-96" name="ᲩᲐᲜᲐᲬᲔᲠᲔᲑᲘᲡ ᲡᲘᲐ" />
       </div>
     </div>
