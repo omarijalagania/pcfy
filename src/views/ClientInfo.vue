@@ -104,7 +104,7 @@ export default {
         <select
           name="team"
           id="team"
-          class="h-[60px] bg-lightGray mt-[52px] w-full"
+          class="h-[60px] bg-lightGray px-5 mt-[52px] w-full"
           v-model="v$.team.$model"
         >
           <option disabled value="">აირჩიეთ ველი</option>
@@ -123,7 +123,7 @@ export default {
         </div>
         <select
           v-model="v$.position.$model"
-          class="h-[60px] mt-[52px] bg-lightGray w-full"
+          class="h-[60px] mt-[52px] px-5 bg-lightGray w-full"
         >
           <option disabled value="">აირჩიეთ ველი</option>
           <option
