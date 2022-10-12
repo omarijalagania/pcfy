@@ -3,9 +3,7 @@ import TheLayout from "../components/shared/TheLayout.vue"
 import { getTeams, getPositions } from "../services/axios"
 import TheButton from "@/components/shared/TheButton.vue"
 import useVuelidate from "@vuelidate/core"
-import { required, helpers, minLength } from "@vuelidate/validators"
-
-const geo = helpers.regex("geo", /[Ⴀ-\u10fe]$/)
+import { clientValidation } from "../validations/clientValidation"
 
 export default {
   components: {
@@ -22,24 +20,25 @@ export default {
       positions: [],
       name: "",
       surname: "",
+      email: "",
+      phone_number: "",
+      team: "",
+      position: "",
     }
   },
   methods: {
-    submitData() {
-      console.log(this.name)
+    async submitData() {
+      const result = await this.v$.$validate()
+      if (result) {
+        console.log("success")
+      } else {
+        console.log("error")
+      }
     },
   },
   validations() {
     return {
-      name: {
-        required: helpers.withMessage("სახელი სავალდებულოა", required),
-        minLength: helpers.withMessage("მინიმუმ 2 სიმბოლო", minLength(2)),
-        geo: helpers.withMessage("მხოლოდ ქართული ასოები", geo),
-      },
-      surname: {
-        required: helpers.withMessage("სახელი სავალდებულოა", required),
-        minLength: helpers.withMessage("მინიმუმ 2 სიმბოლო", minLength(2)),
-      },
+      ...clientValidation,
     }
   },
   async created() {
@@ -102,10 +101,24 @@ export default {
             </div>
           </div>
         </div>
-        <select class="h-[60px] bg-lightGray my-[52px] w-full">
+        <select
+          name="team"
+          id="team"
+          class="h-[60px] bg-lightGray my-[52px] w-full"
+          v-model="v$.team.$model"
+        >
           <option v-for="option in teams" :key="option.id" :value="option.id">
             {{ option.name }}
           </option>
+          <div class="h-1">
+            <p
+              v-for="(error, index) of v$.team.$errors"
+              :key="index"
+              class="font-light text-sm text-gray-500"
+            >
+              {{ error.$message }}
+            </p>
+          </div>
         </select>
         <select class="h-[60px] bg-lightGray mb-[52px] w-full">
           <option
@@ -124,7 +137,17 @@ export default {
             type="email"
             id="email"
             name="email"
+            v-model="v$.email.$model"
           />
+          <div class="h-1">
+            <p
+              v-for="(error, index) of v$.email.$errors"
+              :key="index"
+              class="font-light text-sm text-gray-500"
+            >
+              {{ error.$message }}
+            </p>
+          </div>
         </div>
 
         <div class="flex flex-col mt-[52px] space-y-1">
@@ -137,7 +160,17 @@ export default {
             type="text"
             id="phone_number"
             name="phone_number"
+            v-model="v$.phone_number.$model"
           />
+          <div class="h-1">
+            <p
+              v-for="(error, index) of v$.phone_number.$errors"
+              :key="index"
+              class="font-light text-sm text-gray-500"
+            >
+              {{ error.$message }}
+            </p>
+          </div>
         </div>
         <div class="mt-[150px] absolute px-10 right-0">
           <TheButton width="w-[176px]" name="შემდეგი" />
