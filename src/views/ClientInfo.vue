@@ -104,23 +104,28 @@ export default {
         <select
           name="team"
           id="team"
-          class="h-[60px] bg-lightGray my-[52px] w-full"
+          class="h-[60px] bg-lightGray mt-[52px] w-full"
           v-model="v$.team.$model"
         >
+          <option disabled value="">აირჩიეთ ველი</option>
           <option v-for="option in teams" :key="option.id" :value="option.id">
             {{ option.name }}
           </option>
-          <div class="h-1">
-            <p
-              v-for="(error, index) of v$.team.$errors"
-              :key="index"
-              class="font-light text-sm text-gray-500"
-            >
-              {{ error.$message }}
-            </p>
-          </div>
         </select>
-        <select class="h-[60px] bg-lightGray mb-[52px] w-full">
+        <div class="h-1">
+          <p
+            v-for="(error, index) of v$.team.$errors"
+            :key="index"
+            class="font-light text-sm text-gray-500"
+          >
+            {{ error.$message }}
+          </p>
+        </div>
+        <select
+          v-model="v$.position.$model"
+          class="h-[60px] mt-[52px] bg-lightGray w-full"
+        >
+          <option disabled value="">აირჩიეთ ველი</option>
           <option
             v-for="option in positions"
             :key="option.id"
@@ -129,6 +134,15 @@ export default {
             {{ option.name }}
           </option>
         </select>
+        <div class="h-1 mb-[52px]">
+          <p
+            v-for="(error, index) of v$.position.$errors"
+            :key="index"
+            class="font-light text-sm text-gray-500"
+          >
+            {{ error.$message }}
+          </p>
+        </div>
         <div class="flex flex-col space-y-1">
           <label class="font-medium text-lg" for="email">მეილი</label>
           <input

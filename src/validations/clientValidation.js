@@ -27,7 +27,11 @@ export const clientValidation = {
       phone,
     ),
   },
-  team: {},
+  team: {
+    required: helpers.withMessage("გთხოვთ აირჩიოთ გუნდი", required),
+  },
 
-  position: {},
+  position: {
+    required: helpers.withMessage("გთხოვთ აირჩიოთ პოზიცია", required),
+  },
 }
