@@ -18,5 +18,12 @@ export default {
     />
     <TheNav />
     <slot></slot>
+    <div class="absolute bottom-0 left-1/2 -translate-1/2">
+      <img
+        class="object-cover"
+        src="../../assets/images/redberry.png"
+        alt="footer"
+      />
+    </div>
   </div>
 </template>
