@@ -15,6 +15,7 @@ export const clientValidation = {
   surname: {
     required: helpers.withMessage("სახელი სავალდებულოა", required),
     minLength: helpers.withMessage("მინიმუმ 2 სიმბოლო", minLength(2)),
+    geo: helpers.withMessage("მხოლოდ ქართული ასოები", geo),
   },
   email: {
     required: helpers.withMessage("ემაილი სავალდებულოა", required),

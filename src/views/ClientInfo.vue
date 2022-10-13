@@ -49,6 +49,11 @@ export default {
       console.log(error)
     }
   },
+  watch: {
+    surname() {
+      console.log(this.v$.surname.$errors)
+    },
+  },
 }
 </script>
 
@@ -64,6 +69,7 @@ export default {
             <label class="font-medium text-lg" for="name">სახელი</label>
             <input
               class="h-[60px] w-[360px] border-blue-400 border-2 px-4 outline-none rounded-md"
+              :class="{ 'border-red-500': v$.name.$error }"
               v-model="v$.name.$model"
               placeholder="გრიშა"
               type="text"
@@ -74,16 +80,22 @@ export default {
               <p
                 v-for="(error, index) of v$.name.$errors"
                 :key="index"
-                class="font-light text-sm text-gray-500"
+                class="font-light text-sm text-red-500"
               >
                 {{ error.$message }}
               </p>
+              <div v-if="v$.name.$errors.length === 0" class="h-1">
+                <p class="font-light text-sm text-gray-500">
+                  მინიმუმ 2 სიმბოლო, ქართული ასოები
+                </p>
+              </div>
             </div>
           </div>
           <div class="flex flex-col space-y-1">
             <label class="font-medium text-lg" for="surname">გვარი</label>
             <input
               class="h-[60px] w-[360px] border-blue-400 border-2 px-4 outline-none rounded-md"
+              :class="{ 'border-red-500': v$.surname.$error }"
               placeholder="ბაგრატიონი"
               v-model="v$.surname.$model"
               type="text"
@@ -94,38 +106,37 @@ export default {
               <p
                 v-for="(error, index) of v$.surname.$errors"
                 :key="index"
-                class="font-light text-sm text-gray-500"
+                class="font-light text-sm text-red-500"
               >
                 {{ error.$message }}
               </p>
+              <div v-if="v$.surname.$errors.length === 0" class="h-1">
+                <p class="font-light text-sm text-gray-500">
+                  მინიმუმ 2 სიმბოლო, ქართული ასოები
+                </p>
+              </div>
             </div>
           </div>
         </div>
         <select
           name="team"
           id="team"
-          class="h-[60px] bg-lightGray px-5 mt-[52px] w-full"
+          class="h-[60px] bg-lightGray outline-none border-2 px-5 mt-[52px] w-full"
+          :class="{ 'border-red-500': v$.team.$error }"
           v-model="v$.team.$model"
         >
-          <option disabled value="">აირჩიეთ ველი</option>
+          <option disabled value="">თიმი</option>
           <option v-for="option in teams" :key="option.id" :value="option.id">
             {{ option.name }}
           </option>
         </select>
-        <div class="h-1">
-          <p
-            v-for="(error, index) of v$.team.$errors"
-            :key="index"
-            class="font-light text-sm text-gray-500"
-          >
-            {{ error.$message }}
-          </p>
-        </div>
+
         <select
           v-model="v$.position.$model"
-          class="h-[60px] mt-[52px] px-5 bg-lightGray w-full"
+          class="h-[60px] my-[52px] px-5 outline-none border-2 bg-lightGray w-full"
+          :class="{ 'border-red-500': v$.position.$error }"
         >
-          <option disabled value="">აირჩიეთ ველი</option>
+          <option disabled value="">პოზიცია</option>
           <option
             v-for="option in positions"
             :key="option.id"
@@ -134,19 +145,12 @@ export default {
             {{ option.name }}
           </option>
         </select>
-        <div class="h-1 mb-[52px]">
-          <p
-            v-for="(error, index) of v$.position.$errors"
-            :key="index"
-            class="font-light text-sm text-gray-500"
-          >
-            {{ error.$message }}
-          </p>
-        </div>
+
         <div class="flex flex-col space-y-1">
           <label class="font-medium text-lg" for="email">მეილი</label>
           <input
             class="h-[60px] w-full border-blue-400 border-2 px-4 outline-none rounded-md"
+            :class="{ 'border-red-500': v$.email.$error }"
             placeholder="grish666@redberry.ge"
             type="email"
             id="email"
@@ -157,10 +161,15 @@ export default {
             <p
               v-for="(error, index) of v$.email.$errors"
               :key="index"
-              class="font-light text-sm text-gray-500"
+              class="font-light text-sm text-red-500"
             >
               {{ error.$message }}
             </p>
+            <div v-if="v$.email.$errors.length === 0" class="h-1">
+              <p class="font-light text-sm text-gray-500">
+                უნდა მთავრდებოდეს @redberry.ge-ით
+              </p>
+            </div>
           </div>
         </div>
 
@@ -170,6 +179,7 @@ export default {
           >
           <input
             class="h-[60px] w-full border-blue-400 border-2 px-4 outline-none rounded-md"
+            :class="{ 'border-red-500': v$.phone_number.$error }"
             placeholder="+995 598 00 07 01"
             type="text"
             id="phone_number"
@@ -180,10 +190,15 @@ export default {
             <p
               v-for="(error, index) of v$.phone_number.$errors"
               :key="index"
-              class="font-light text-sm text-gray-500"
+              class="font-light text-sm text-red-500"
             >
               {{ error.$message }}
             </p>
+            <div v-if="v$.phone_number.$errors.length === 0" class="h-1">
+              <p class="font-light text-sm text-gray-500">
+                უნდა აკმაყოფილებდეს ქართული მობ-ნომრის ფორმატს
+              </p>
+            </div>
           </div>
         </div>
         <div class="mt-[150px] absolute px-10 right-0">
