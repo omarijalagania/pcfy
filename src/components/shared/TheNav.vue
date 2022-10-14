@@ -1,9 +1,5 @@
 <script>
-export default {
-  created: function () {
-    console.log(this.$route.path)
-  },
-}
+export default {}
 </script>
 
 <template>

@@ -49,24 +49,24 @@ export default {
       console.log(error)
     }
   },
-  watch: {
-    surname() {
-      console.log(this.v$.surname.$errors)
-    },
-  },
 }
 </script>
 
 <template>
   <TheLayout>
-    <section class="bg-white w-[1226px] flex justify-center h-[973px]">
+    <section class="bg-white w-[1280px] flex justify-center min-h-[973px]">
       <form
         @submit.prevent="submitData"
         class="w-[1024px] relative px-10 py-20"
       >
         <div class="flex justify-between items-center">
           <div class="flex flex-col space-y-1">
-            <label class="font-medium text-lg" for="name">სახელი</label>
+            <label
+              :class="{ 'text-red-500': v$.name.$error }"
+              class="font-medium text-lg"
+              for="name"
+              >სახელი</label
+            >
             <input
               class="h-[60px] w-[360px] border-blue-400 border-2 px-4 outline-none rounded-md"
               :class="{ 'border-red-500': v$.name.$error }"
@@ -92,7 +92,12 @@ export default {
             </div>
           </div>
           <div class="flex flex-col space-y-1">
-            <label class="font-medium text-lg" for="surname">გვარი</label>
+            <label
+              :class="{ 'text-red-500': v$.surname.$error }"
+              class="font-medium text-lg"
+              for="surname"
+              >გვარი</label
+            >
             <input
               class="h-[60px] w-[360px] border-blue-400 border-2 px-4 outline-none rounded-md"
               :class="{ 'border-red-500': v$.surname.$error }"
@@ -147,7 +152,12 @@ export default {
         </select>
 
         <div class="flex flex-col space-y-1">
-          <label class="font-medium text-lg" for="email">მეილი</label>
+          <label
+            :class="{ 'text-red-500': v$.email.$error }"
+            class="font-medium text-lg"
+            for="email"
+            >მეილი</label
+          >
           <input
             class="h-[60px] w-full border-blue-400 border-2 px-4 outline-none rounded-md"
             :class="{ 'border-red-500': v$.email.$error }"
@@ -174,7 +184,10 @@ export default {
         </div>
 
         <div class="flex flex-col mt-[52px] space-y-1">
-          <label class="font-medium text-lg" for="phone_number"
+          <label
+            :class="{ 'text-red-500': v$.phone_number.$error }"
+            class="font-medium text-lg"
+            for="phone_number"
             >ტელეფონის ნომერი</label
           >
           <input

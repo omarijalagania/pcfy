@@ -9,7 +9,7 @@ export default {
 
 <template>
   <div
-    class="min-h-screen relative flex flex-col justify-center items-center bg-gray-200"
+    class="h-screen relative flex flex-col justify-center items-center bg-gray-200"
   >
     <img
       class="object-cover absolute left-16 top-12 cursor-pointer"
@@ -18,12 +18,11 @@ export default {
     />
     <TheNav />
     <slot></slot>
-    <div class="absolute bottom-0 left-1/2 -translate-1/2">
-      <img
-        class="object-cover"
-        src="../../assets/images/redberry.png"
-        alt="footer"
-      />
-    </div>
+
+    <img
+      class="object-cover mt-10 mb-20"
+      src="../../assets/images/redberry.png"
+      alt="footer"
+    />
   </div>
 </template>
