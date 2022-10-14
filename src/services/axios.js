@@ -14,3 +14,8 @@ export const getBrands = async () => {
   const response = await request.get("/brands")
   return response.data.data
 }
+
+export const getCpus = async () => {
+  const response = await request.get("/cpus")
+  return response.data.data
+}

@@ -1,6 +1,7 @@
 import { required, helpers } from "@vuelidate/validators"
 
 const laptopName = helpers.regex(/^[ A-Za-z0-9_!@#$%^&*()_+=]*$/)
+const cores = helpers.regex(/^[0-9]*$/)
 
 export const pcValidation = {
   laptop_name: {
@@ -12,5 +13,18 @@ export const pcValidation = {
   ),
   brand: {
     required: helpers.withMessage("გთხოვთ აირჩიოთ ბრენდი", required),
+  },
+  laptop_cpu: {
+    required: helpers.withMessage("გთხოვთ აირჩიოთ პროცესორი", required),
+  },
+  laptop_cpu_cores: {
+    required: helpers.withMessage("გთხოვთ აირჩიოთ ბირთვები", required),
+    cores: helpers.withMessage("მხოლოდ ციფრები", cores),
+  },
+  laptop_cpu_threads: {
+    required: helpers.withMessage("გთხოვთ აირჩიოთ ნაკადი", required),
+  },
+  laptop_ram: {
+    required: helpers.withMessage("გთხოვთ აირჩიოთ მეხსიერება", required),
   },
 }
