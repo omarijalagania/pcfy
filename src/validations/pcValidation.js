@@ -27,4 +27,12 @@ export const pcValidation = {
   laptop_ram: {
     required: helpers.withMessage("გთხოვთ აირჩიოთ მეხსიერება", required),
   },
+  laptop_hard_drive_type: {
+    required: helpers.withMessage("გთხოვთ აირჩიოთ დისკის ტიპი", required),
+  },
+  laptop_purchase_date: {},
+  laptop_price: {
+    required: helpers.withMessage("გთხოვთ შეავსოთ ფასი", required),
+    cores: helpers.withMessage("მხოლოდ ციფრები", cores),
+  },
 }

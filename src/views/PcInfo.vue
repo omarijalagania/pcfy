@@ -20,6 +20,8 @@ export default {
       laptop_cpu_threads: 365,
       laptop_ram: 16,
       laptop_hard_drive_type: "",
+      laptop_purchase_date: "",
+      laptop_price: 0,
     }
   },
   validations() {
@@ -106,7 +108,7 @@ export default {
           <select
             name="laptop_cpu"
             id="laptop_cpu"
-            class="h-[60px] bg-lightGray outline-none border-2 px-5 mt-[32px] w-[270px]"
+            class="h-[60px] bg-lightGray outline-none border-2 px-5 mt-[36px] w-[280px]"
             :class="{ 'border-red-500': v$.laptop_cpu.$error }"
             v-model="v$.laptop_cpu.$model"
           >
@@ -209,7 +211,79 @@ export default {
               </div>
             </div>
           </div>
-          <input type="radio" />
+          <div class="ml-20">
+            <p class="font-medium text-lg">მეხსიერების ტიპი</p>
+            <div class="flex space-x-12 items-center mt-5">
+              <div>
+                <input
+                  type="radio"
+                  v-model="v$.laptop_hard_drive_type.$model"
+                  value="SSD"
+                  name="laptop_hard_drive_type"
+                  id="SSD"
+                />
+                <label class="ml-3 font-normal text-lg" for="SSD">SSD</label>
+              </div>
+
+              <div>
+                <input
+                  type="radio"
+                  v-model="v$.laptop_hard_drive_type.$model"
+                  value="HDD"
+                  name="laptop_hard_drive_type"
+                  id="HDD"
+                />
+                <label class="ml-3 font-normal text-lg" for="SSD">HDD</label>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="w-full h-[2px] mt-20 mb-16 bg-[#C7C7C7]" />
+
+        <div class="flex items-center justify-between">
+          <div class="flex flex-col space-y-1">
+            <label class="font-medium text-lg" for="laptop_purchase_date"
+              >შეძენის რიცხვი (არჩევითი)</label
+            >
+            <input
+              class="h-[60px] w-[360px] border-blue-400 border-2 px-4 outline-none rounded-md"
+              :class="{ 'border-red-500': v$.laptop_purchase_date.$error }"
+              v-model="v$.laptop_purchase_date.$model"
+              placeholder="დდ / თთ / წწწწ"
+              type="date"
+              id="laptop_purchase_date"
+              name="laptop_purchase_date"
+            />
+          </div>
+          <div class="flex flex-col space-y-1">
+            <label
+              :class="{ 'text-red-500': v$.laptop_price.$error }"
+              class="font-medium text-lg"
+              for="laptop_price"
+              >ლეპტოპის ფასი</label
+            >
+            <input
+              class="h-[60px] w-[360px] border-blue-400 border-2 px-4 outline-none rounded-md"
+              :class="{ 'border-red-500': v$.laptop_price.$error }"
+              v-model="v$.laptop_price.$model"
+              placeholder="0000"
+              type="text"
+              id="laptop_price"
+              name="laptop_price"
+            />
+            <div class="h-1">
+              <p
+                v-for="(error, index) of v$.laptop_price.$errors"
+                :key="index"
+                class="font-light text-sm text-red-500"
+              >
+                {{ error.$message }}
+              </p>
+              <div v-if="v$.laptop_price.$errors.length === 0" class="h-1">
+                <p class="font-light text-sm text-gray-500">მხოლოდ ციფრები</p>
+              </div>
+            </div>
+          </div>
         </div>
       </form>
     </section>
