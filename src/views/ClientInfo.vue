@@ -54,10 +54,10 @@ export default {
 
 <template>
   <TheLayout>
-    <section class="bg-white w-[1280px] flex justify-center min-h-[973px]">
+    <section class="bg-white w-[1280px] h-[973px] mb-32 flex justify-center">
       <form
         @submit.prevent="submitData"
-        class="w-[1024px] relative px-10 py-20"
+        class="w-[1024px] relative px-10 pt-20"
       >
         <div class="flex justify-between items-center">
           <div class="flex flex-col space-y-1">
@@ -183,7 +183,7 @@ export default {
           </div>
         </div>
 
-        <div class="flex flex-col mt-[52px] space-y-1">
+        <div class="flex flex-col mt-[52px] mb-[100px] space-y-1">
           <label
             :class="{ 'text-red-500': v$.phone_number.$error }"
             class="font-medium text-lg"
@@ -214,7 +214,7 @@ export default {
             </div>
           </div>
         </div>
-        <div class="mt-[150px] absolute px-10 right-0">
+        <div class="flex justify-end">
           <TheButton width="w-[176px]" name="შემდეგი" />
         </div>
       </form>

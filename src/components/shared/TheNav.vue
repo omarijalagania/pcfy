@@ -1,9 +1,13 @@
 <script>
-export default {}
+export default {
+  created() {
+    console.log("lol")
+  },
+}
 </script>
 
 <template>
-  <nav class="mt-24 mb-10">
+  <nav class="mt-20 mb-10">
     <ul class="flex space-x-10">
       <li
         class="pb-2"

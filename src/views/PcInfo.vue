@@ -15,9 +15,11 @@ export default {
   },
   data() {
     return {
-      brand: [],
-      cpu: [],
+      brands: [],
+      cpus: [],
+      brand: "",
       laptop_name: "",
+      laptop_cpu: "",
       laptop_cpu_cores: null,
       laptop_cpu_threads: null,
       laptop_ram: null,
@@ -44,8 +46,8 @@ export default {
   },
   async created() {
     try {
-      this.brand = await getBrands()
-      this.cpu = await getCpus()
+      this.brands = await getBrands()
+      this.cpus = await getCpus()
       console.log(this.brand)
     } catch (error) {
       console.log(error)
@@ -56,7 +58,7 @@ export default {
 
 <template>
   <TheLayout>
-    <section class="bg-white w-[1280px] flex justify-center">
+    <section class="bg-white w-[1280px] mb-32 flex justify-center">
       <form
         @submit.prevent="submitPcData"
         class="w-[1024px] relative px-10 py-20"
@@ -101,7 +103,11 @@ export default {
             v-model="v$.brand.$model"
           >
             <option disabled value="">ლეპტოპის ბრენდი</option>
-            <option v-for="option in brand" :key="option.id" :value="option.id">
+            <option
+              v-for="option in brands"
+              :key="option.id"
+              :value="option.id"
+            >
               {{ option.name }}
             </option>
           </select>
@@ -116,7 +122,7 @@ export default {
             v-model="v$.laptop_cpu.$model"
           >
             <option disabled value="">CPU</option>
-            <option v-for="option in cpu" :key="option.id" :value="option.id">
+            <option v-for="option in cpus" :key="option.id" :value="option.id">
               {{ option.name }}
             </option>
           </select>
@@ -125,13 +131,13 @@ export default {
               :class="{ 'text-red-500': v$.laptop_cpu_cores.$error }"
               class="font-medium text-lg"
               for="laptop_name"
-              >ლეპტოპის სახელი</label
+              >CPU ბირთვი</label
             >
             <input
               class="h-[60px] w-[270px] border-blue-400 border-2 px-4 outline-none rounded-md"
               :class="{ 'border-red-500': v$.laptop_cpu_cores.$error }"
               v-model="v$.laptop_cpu_cores.$model"
-              placeholder="HP"
+              placeholder="16"
               type="number"
               id="laptop_cpu_cores"
               name="laptop_cpu_cores"
