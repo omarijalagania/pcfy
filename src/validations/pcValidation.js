@@ -35,4 +35,7 @@ export const pcValidation = {
     required: helpers.withMessage("გთხოვთ შეავსოთ ფასი", required),
     cores: helpers.withMessage("მხოლოდ ციფრები", cores),
   },
+  laptop_state: {
+    required: helpers.withMessage("გთხოვთ აირჩიოთ სტატუსი", required),
+  },
 }

@@ -3,10 +3,12 @@ import TheLayout from "../components/shared/TheLayout.vue"
 import useVuelidate from "@vuelidate/core"
 import { pcValidation } from "../validations/pcValidation"
 import { getBrands, getCpus } from "@/services/axios"
+import TheButton from "@/components/shared/TheButton.vue"
 
 export default {
   components: {
     TheLayout,
+    TheButton,
   },
   setup() {
     return { v$: useVuelidate() }
@@ -16,12 +18,13 @@ export default {
       brand: [],
       cpu: [],
       laptop_name: "",
-      laptop_cpu_cores: 14,
-      laptop_cpu_threads: 365,
-      laptop_ram: 16,
+      laptop_cpu_cores: null,
+      laptop_cpu_threads: null,
+      laptop_ram: null,
       laptop_hard_drive_type: "",
       laptop_purchase_date: "",
-      laptop_price: 0,
+      laptop_price: null,
+      laptop_state: "",
     }
   },
   validations() {
@@ -53,7 +56,7 @@ export default {
 
 <template>
   <TheLayout>
-    <section class="bg-white w-[1280px] flex justify-center min-h-[973px]">
+    <section class="bg-white w-[1280px] flex justify-center">
       <form
         @submit.prevent="submitPcData"
         class="w-[1024px] relative px-10 py-20"
@@ -212,7 +215,12 @@ export default {
             </div>
           </div>
           <div class="ml-20">
-            <p class="font-medium text-lg">მეხსიერების ტიპი</p>
+            <p
+              :class="{ 'text-red-500': v$.laptop_hard_drive_type.$error }"
+              class="font-medium text-lg"
+            >
+              მეხსიერების ტიპი
+            </p>
             <div class="flex space-x-12 items-center mt-5">
               <div>
                 <input
@@ -284,6 +292,43 @@ export default {
               </div>
             </div>
           </div>
+        </div>
+        <div class="mt-24">
+          <p
+            :class="{ 'text-red-500': v$.laptop_state.$error }"
+            class="font-medium text-lg"
+          >
+            ლეპტოპის მდგომარეობა
+          </p>
+          <div class="flex space-x-12 items-center mt-5">
+            <div>
+              <input
+                type="radio"
+                v-model="v$.laptop_state.$model"
+                value="ახალი"
+                name="laptop_state"
+                id="new"
+              />
+              <label class="ml-3 font-normal text-lg" for="new">ახალი</label>
+            </div>
+
+            <div>
+              <input
+                type="radio"
+                v-model="v$.laptop_state.$model"
+                value="მეორადი"
+                name="laptop_state"
+                id="secondary"
+              />
+              <label class="ml-3 font-normal text-lg" for="secondary"
+                >მეორადი</label
+              >
+            </div>
+          </div>
+        </div>
+        <div class="flex justify-between items-center mt-24">
+          <p class="font-medium text-lg text-blue-400 cursor-pointer">უკან</p>
+          <TheButton width="w-[219px]" name="დამახსოვრება" />
         </div>
       </form>
     </section>
