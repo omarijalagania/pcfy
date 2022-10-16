@@ -43,7 +43,7 @@ export default {
     async submitPcData() {
       const result = await this.v$.$validate()
 
-      if (result && this.laptop_image !== "") {
+      if (result || this.laptop_image !== "") {
         this.isError = false
         console.log("success")
       } else {
