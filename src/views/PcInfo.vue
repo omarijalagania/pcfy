@@ -29,8 +29,9 @@ export default {
       laptop_purchase_date: this.$store.state.laptop_purchase_date,
       laptop_price: this.$store.state.laptop_price,
       laptop_state: this.$store.state.laptop_state,
-      laptop_image: this.$store.state.laptop_image,
+      laptop_image: "",
       showUploadAgain: false,
+      isError: false,
     }
   },
   validations() {
@@ -41,16 +42,18 @@ export default {
   methods: {
     async submitPcData() {
       const result = await this.v$.$validate()
-      console.log(this.v$)
-      if (result) {
+
+      if (result && this.laptop_image !== "") {
+        this.isError = false
         console.log("success")
       } else {
+        this.isError = true
         console.log("error")
       }
     },
     drop($e) {
       this.laptop_image = $e.dataTransfer.files[0]
-      this.$store.commit("addLaptopImage", this.laptop_image)
+
       this.showUploadAgain = true
     },
 
@@ -91,7 +94,9 @@ export default {
       this.$store.commit("addLaptopState", this.laptop_state)
     },
     laptop_image() {
-      this.$store.commit("addLaptopImage", this.laptop_image)
+      if (this.laptop_image !== "") {
+        this.isError = false
+      }
     },
   },
   async created() {
@@ -115,6 +120,7 @@ export default {
         <div class="flex justify-center w-full mb-3">
           <DropZone
             :showUpload="this.showUploadAgain"
+            :isError="this.isError"
             @drop.prevent="drop"
             @change="selectedFile"
           />

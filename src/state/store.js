@@ -20,7 +20,6 @@ export const store = new Vuex.Store({
     laptop_price: null,
     laptop_state: "",
     validateClient: false,
-    laptop_image: "",
   },
 
   plugins: [createPersistedState()],
@@ -76,9 +75,6 @@ export const store = new Vuex.Store({
     },
     validateClient(state, payload) {
       state.validateClient = payload
-    },
-    addLaptopImage(state, payload) {
-      state.laptop_image = payload
     },
   },
 })

@@ -38,5 +38,4 @@ export const pcValidation = {
   laptop_state: {
     required: helpers.withMessage("გთხოვთ აირჩიოთ სტატუსი", required),
   },
-  laptop_image: {},
 }
