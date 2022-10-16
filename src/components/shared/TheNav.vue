@@ -1,9 +1,5 @@
 <script>
-export default {
-  created() {
-    console.log("lol")
-  },
-}
+export default {}
 </script>
 
 <template>
@@ -25,7 +21,9 @@ export default {
           this.$route.path === '/pc-info' ? 'border-b-2 border-black' : ''
         "
       >
-        <router-link class="text-xl font-bold" to="/pc-info"
+        <router-link
+          class="text-xl font-bold"
+          :to="this.$store.state.validateClient ? '/pc-info' : ''"
           >ლეპტოპის მახასიათებლები</router-link
         >
       </li>

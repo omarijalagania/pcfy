@@ -4,11 +4,13 @@ import useVuelidate from "@vuelidate/core"
 import { pcValidation } from "../validations/pcValidation"
 import { getBrands, getCpus } from "@/services/axios"
 import TheButton from "@/components/shared/TheButton.vue"
+import DropZone from "@/components/DropZone.vue"
 
 export default {
   components: {
     TheLayout,
     TheButton,
+    DropZone,
   },
   setup() {
     return { v$: useVuelidate() }
@@ -17,16 +19,17 @@ export default {
     return {
       brands: [],
       cpus: [],
-      brand: "",
-      laptop_name: "",
-      laptop_cpu: "",
-      laptop_cpu_cores: null,
-      laptop_cpu_threads: null,
-      laptop_ram: null,
-      laptop_hard_drive_type: "",
-      laptop_purchase_date: "",
-      laptop_price: null,
-      laptop_state: "",
+      brand: this.$store.state.brand,
+      laptop_name: this.$store.state.laptop_name,
+      laptop_cpu: this.$store.state.laptop_cpu,
+      laptop_cpu_cores: this.$store.state.laptop_cpu_cores,
+      laptop_cpu_threads: this.$store.state.laptop_cpu_threads,
+      laptop_ram: this.$store.state.laptop_ram,
+      laptop_hard_drive_type: this.$store.state.laptop_hard_drive_type,
+      laptop_purchase_date: this.$store.state.laptop_purchase_date,
+      laptop_price: this.$store.state.laptop_price,
+      laptop_state: this.$store.state.laptop_state,
+      laptop_image: this.$store.state.laptop_image,
     }
   },
   validations() {
@@ -37,18 +40,61 @@ export default {
   methods: {
     async submitPcData() {
       const result = await this.v$.$validate()
+      console.log(this.v$)
       if (result) {
         console.log("success")
       } else {
         console.log("error")
       }
     },
+    drop($e) {
+      this.laptop_image = $e.dataTransfer.files[0]
+      this.$store.commit("addLaptopImage", this.laptop_image)
+    },
+
+    selectedFile() {
+      this.laptop_image = document.querySelector(".dropzoneFile").files[0]
+    },
+  },
+  watch: {
+    brand() {
+      this.$store.commit("addBrand", this.brand)
+    },
+    laptop_name() {
+      this.$store.commit("addLaptopName", this.laptop_name)
+    },
+    laptop_cpu() {
+      this.$store.commit("addLaptopCpu", this.laptop_cpu)
+    },
+    laptop_cpu_cores() {
+      this.$store.commit("addLaptopCpuCores", this.laptop_cpu_cores)
+    },
+    laptop_cpu_threads() {
+      this.$store.commit("addLaptopCpuThreads", this.laptop_cpu_threads)
+    },
+    laptop_ram() {
+      this.$store.commit("addLaptopRam", this.laptop_ram)
+    },
+    laptop_hard_drive_type() {
+      this.$store.commit("addLaptopHardDriveType", this.laptop_hard_drive_type)
+    },
+    laptop_purchase_date() {
+      this.$store.commit("addLaptopPurchaseDate", this.laptop_purchase_date)
+    },
+    laptop_price() {
+      this.$store.commit("addLaptopPrice", this.laptop_price)
+    },
+    laptop_state() {
+      this.$store.commit("addLaptopState", this.laptop_state)
+    },
+    laptop_image() {
+      this.$store.commit("addLaptopImage", this.laptop_image)
+    },
   },
   async created() {
     try {
       this.brands = await getBrands()
       this.cpus = await getCpus()
-      console.log(this.brand)
     } catch (error) {
       console.log(error)
     }
@@ -63,6 +109,14 @@ export default {
         @submit.prevent="submitPcData"
         class="w-[1024px] relative px-10 py-20"
       >
+        <div class="flex justify-center w-full mb-10">
+          <DropZone
+            :isError="this.laptop_image"
+            @drop.prevent="drop"
+            @change="selectedFile"
+          />
+          <p>File: {{ this.laptop_image.name }}</p>
+        </div>
         <div class="flex items-center w-full justify-between">
           <div class="flex flex-col space-y-1">
             <label

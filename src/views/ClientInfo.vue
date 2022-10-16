@@ -8,7 +8,6 @@ import { clientValidation } from "../validations/clientValidation"
 export default {
   components: {
     TheLayout,
-
     TheButton,
   },
   setup() {
@@ -24,6 +23,7 @@ export default {
       phone_number: this.$store.state.phone_number,
       team: this.$store.state.team,
       position: this.$store.state.position,
+      isValid: false,
     }
   },
 
@@ -31,32 +31,72 @@ export default {
     async submitData() {
       const result = await this.v$.$validate()
       if (result) {
-        console.log("success")
+        this.$store.commit("validateClient", {
+          name: this.name,
+          surname: this.surname,
+          email: this.email,
+          phone_number: this.phone_number,
+          team: this.team,
+          position: this.position,
+        })
+        this.$store.commit("validateClient", true)
+        this.$router.push("/pc-info")
       } else {
-        console.log("error")
+        this.$store.commit("validateClient", false)
       }
     },
   },
   watch: {
     name() {
       this.$store.commit("addName", this.name)
+      if (this.v$.name.$invalid) {
+        this.$store.commit("validateClient", false)
+      } else {
+        this.$store.commit("validateClient", true)
+      }
     },
     surname() {
       this.$store.commit("addSurname", this.surname)
+      if (this.v$.surname.$invalid) {
+        this.$store.commit("validateClient", false)
+      } else {
+        this.$store.commit("validateClient", true)
+      }
     },
     email() {
       this.$store.commit("addEmail", this.email)
+      if (this.v$.email.$invalid) {
+        this.$store.commit("validateClient", false)
+      } else {
+        this.$store.commit("validateClient", true)
+      }
     },
     phone_number() {
       this.$store.commit("addPhoneNumber", this.phone_number)
+      if (this.v$.phone_number.$invalid) {
+        this.$store.commit("validateClient", false)
+      } else {
+        this.$store.commit("validateClient", true)
+      }
     },
     team() {
       this.$store.commit("addTeam", this.team)
+      if (this.v$.team.$invalid) {
+        this.$store.commit("validateClient", false)
+      } else {
+        this.$store.commit("validateClient", true)
+      }
     },
     position() {
       this.$store.commit("addPosition", this.position)
+      if (this.v$.position.$invalid) {
+        this.$store.commit("validateClient", false)
+      } else {
+        this.$store.commit("validateClient", true)
+      }
     },
   },
+
   validations() {
     return {
       ...clientValidation,
@@ -64,7 +104,6 @@ export default {
   },
 
   async created() {
-    console.log(this.$store.state.name)
     try {
       this.teams = await getTeams()
       this.positions = await getPositions()
