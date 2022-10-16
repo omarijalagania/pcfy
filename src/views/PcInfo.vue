@@ -166,7 +166,7 @@ export default {
               class="h-[60px] w-[270px] border-blue-400 border-2 px-4 outline-none rounded-md"
               :class="{ 'border-red-500': v$.laptop_cpu_threads.$error }"
               v-model="v$.laptop_cpu_threads.$model"
-              placeholder="HP"
+              placeholder="0000"
               type="number"
               id="laptop_cpu_threads"
               name="laptop_cpu_threads"
@@ -194,13 +194,13 @@ export default {
               :class="{ 'text-red-500': v$.laptop_ram.$error }"
               class="font-medium text-lg"
               for="laptop_name"
-              >CPU-ს ნაკადი</label
+              >ლეპტოპის RAM (GB)</label
             >
             <input
               class="h-[60px] w-[400px] border-blue-400 border-2 px-4 outline-none rounded-md"
               :class="{ 'border-red-500': v$.laptop_ram.$error }"
               v-model="v$.laptop_ram.$model"
-              placeholder="HP"
+              placeholder="16"
               type="number"
               id="laptop_ram"
               name="laptop_ram"

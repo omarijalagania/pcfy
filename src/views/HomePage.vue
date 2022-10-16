@@ -14,9 +14,13 @@ export default {
 
 <template>
   <div class="h-screen">
-    <div class="flex pt-20 pb-24 flex-col justify-center items-center">
+    <div class="flex pt-20 flex-col justify-center items-center">
       <img alt="Vue logo" src="../assets/images/logo.png" />
-      <img class="mt-44" src="../assets/images/main.png" alt="main image" />
+      <img
+        class="mt-40 w-[750px] h-auto object-cover"
+        src="../assets/images/main.png"
+        alt="main image"
+      />
       <div class="mt-28 flex flex-col space-y-6">
         <TheButton
           @click="handleButtonClick"

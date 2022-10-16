@@ -26,6 +26,7 @@ export default {
       position: "",
     }
   },
+
   methods: {
     async submitData() {
       const result = await this.v$.$validate()
@@ -36,11 +37,18 @@ export default {
       }
     },
   },
+  watch: {
+    name() {
+      this.$store.commit("addName", this.name)
+      console.log(this.$store.state.name)
+    },
+  },
   validations() {
     return {
       ...clientValidation,
     }
   },
+
   async created() {
     try {
       this.teams = await getTeams()
