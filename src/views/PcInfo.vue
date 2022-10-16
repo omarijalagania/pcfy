@@ -158,7 +158,7 @@ export default {
             >
             <input
               class="h-[60px] w-[360px] border-blue-400 border-2 px-4 outline-none rounded-md"
-              :class="{ 'border-red-500': v$.laptop_name.$error }"
+              :class="{ '!border-red-500': v$.laptop_name.$error }"
               v-model="v$.laptop_name.$model"
               placeholder="HP"
               type="text"
@@ -220,7 +220,7 @@ export default {
             >
             <input
               class="h-[60px] w-[270px] border-blue-400 border-2 px-4 outline-none rounded-md"
-              :class="{ 'border-red-500': v$.laptop_cpu_cores.$error }"
+              :class="{ '!border-red-500': v$.laptop_cpu_cores.$error }"
               v-model="v$.laptop_cpu_cores.$model"
               placeholder="16"
               type="number"
@@ -249,7 +249,7 @@ export default {
             >
             <input
               class="h-[60px] w-[270px] border-blue-400 border-2 px-4 outline-none rounded-md"
-              :class="{ 'border-red-500': v$.laptop_cpu_threads.$error }"
+              :class="{ '!border-red-500': v$.laptop_cpu_threads.$error }"
               v-model="v$.laptop_cpu_threads.$model"
               placeholder="0000"
               type="number"
@@ -283,7 +283,7 @@ export default {
             >
             <input
               class="h-[60px] w-[400px] border-blue-400 border-2 px-4 outline-none rounded-md"
-              :class="{ 'border-red-500': v$.laptop_ram.$error }"
+              :class="{ '!border-red-500': v$.laptop_ram.$error }"
               v-model="v$.laptop_ram.$model"
               placeholder="16"
               type="number"
@@ -363,7 +363,7 @@ export default {
             >
             <input
               class="h-[60px] w-[360px] border-blue-400 border-2 px-4 outline-none rounded-md"
-              :class="{ 'border-red-500': v$.laptop_price.$error }"
+              :class="{ '!border-red-500': v$.laptop_price.$error }"
               v-model="v$.laptop_price.$model"
               placeholder="0000"
               type="text"
@@ -418,7 +418,12 @@ export default {
           </div>
         </div>
         <div class="flex justify-between items-center mt-24">
-          <p class="font-medium text-lg text-blue-400 cursor-pointer">უკან</p>
+          <p
+            @click="this.$router.push('/client-info')"
+            class="font-medium text-lg text-blue-400 cursor-pointer"
+          >
+            უკან
+          </p>
           <TheButton width="w-[219px]" name="დამახსოვრება" />
         </div>
       </form>

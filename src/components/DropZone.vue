@@ -21,9 +21,9 @@ export default {
     @dragover.prevent
     @drop.prevent="toggleActive"
     :class="{
-      'border-green-500': active,
+      'border-green-500 bg-green-100': active,
       'border-none bg-gray-100': this.showUpload,
-      'bg-red-50 border-2 border-red-500': this.isError && !this.showUpload,
+      '!bg-red-50 !border-2 !border-red-500': this.isError && !this.showUpload,
     }"
     class="border-2 border-dashed border-blue-400 bg-white rounded-md h-[425px] w-full flex flex-col items-center justify-center"
   >

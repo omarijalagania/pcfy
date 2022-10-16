@@ -131,7 +131,7 @@ export default {
             >
             <input
               class="h-[60px] w-[360px] border-blue-400 border-2 px-4 outline-none rounded-md"
-              :class="{ 'border-red-500': v$.name.$error }"
+              :class="{ '!border-red-500': v$.name.$error }"
               v-model="v$.name.$model"
               placeholder="გრიშა"
               type="text"
@@ -162,7 +162,7 @@ export default {
             >
             <input
               class="h-[60px] w-[360px] border-blue-400 border-2 px-4 outline-none rounded-md"
-              :class="{ 'border-red-500': v$.surname.$error }"
+              :class="{ '!border-red-500': v$.surname.$error }"
               placeholder="ბაგრატიონი"
               v-model="v$.surname.$model"
               type="text"
@@ -222,7 +222,7 @@ export default {
           >
           <input
             class="h-[60px] w-full border-blue-400 border-2 px-4 outline-none rounded-md"
-            :class="{ 'border-red-500': v$.email.$error }"
+            :class="{ '!border-red-500': v$.email.$error }"
             placeholder="grish666@redberry.ge"
             type="email"
             id="email"
@@ -254,7 +254,7 @@ export default {
           >
           <input
             class="h-[60px] w-full border-blue-400 border-2 px-4 outline-none rounded-md"
-            :class="{ 'border-red-500': v$.phone_number.$error }"
+            :class="{ '!border-red-500': v$.phone_number.$error }"
             placeholder="+995 598 00 07 01"
             type="text"
             id="phone_number"
