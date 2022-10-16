@@ -30,6 +30,7 @@ export default {
       laptop_price: this.$store.state.laptop_price,
       laptop_state: this.$store.state.laptop_state,
       laptop_image: this.$store.state.laptop_image,
+      showUploadAgain: false,
     }
   },
   validations() {
@@ -50,10 +51,12 @@ export default {
     drop($e) {
       this.laptop_image = $e.dataTransfer.files[0]
       this.$store.commit("addLaptopImage", this.laptop_image)
+      this.showUploadAgain = true
     },
 
     selectedFile() {
       this.laptop_image = document.querySelector(".dropzoneFile").files[0]
+      this.showUploadAgain = true
     },
   },
   watch: {
@@ -109,13 +112,35 @@ export default {
         @submit.prevent="submitPcData"
         class="w-[1024px] relative px-10 py-20"
       >
-        <div class="flex justify-center w-full mb-10">
+        <div class="flex justify-center w-full mb-3">
           <DropZone
-            :isError="this.laptop_image"
+            :showUpload="this.showUploadAgain"
             @drop.prevent="drop"
             @change="selectedFile"
           />
-          <p>File: {{ this.laptop_image.name }}</p>
+        </div>
+        <div
+          v-if="this.showUploadAgain"
+          class="flex justify-between items-center"
+        >
+          <div class="flex">
+            <div class="truncate space-x-2 flex max-w-[200px]">
+              <img
+                class="object-cover"
+                src="./../assets/images/check.png"
+                alt="checked"
+              />
+              <p>{{ this.laptop_image.name }}</p>
+            </div>
+            <p class="ml-2">
+              {{ (this.laptop_image.size / 1048576).toFixed(1) }} MB
+            </p>
+          </div>
+          <label
+            class="w-[233px] flex text-xl font-medium justify-center items-center rounded-md text-white h-[60px] bg-blue-400"
+            for="dropzoneFile"
+            >ატვირთე თავიდან
+          </label>
         </div>
         <div class="flex items-center w-full justify-between">
           <div class="flex flex-col space-y-1">
