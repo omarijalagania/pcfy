@@ -18,12 +18,12 @@ export default {
     return {
       teams: [],
       positions: [],
-      name: "",
-      surname: "",
-      email: "",
-      phone_number: "",
-      team: "",
-      position: "",
+      name: this.$store.state.name,
+      surname: this.$store.state.surname,
+      email: this.$store.state.email,
+      phone_number: this.$store.state.phone_number,
+      team: this.$store.state.team,
+      position: this.$store.state.position,
     }
   },
 
@@ -40,7 +40,21 @@ export default {
   watch: {
     name() {
       this.$store.commit("addName", this.name)
-      console.log(this.$store.state.name)
+    },
+    surname() {
+      this.$store.commit("addSurname", this.surname)
+    },
+    email() {
+      this.$store.commit("addEmail", this.email)
+    },
+    phone_number() {
+      this.$store.commit("addPhoneNumber", this.phone_number)
+    },
+    team() {
+      this.$store.commit("addTeam", this.team)
+    },
+    position() {
+      this.$store.commit("addPosition", this.position)
     },
   },
   validations() {
@@ -50,6 +64,7 @@ export default {
   },
 
   async created() {
+    console.log(this.$store.state.name)
     try {
       this.teams = await getTeams()
       this.positions = await getPositions()
