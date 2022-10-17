@@ -17,7 +17,7 @@ export default {
     />
     <img
       @click="this.$router.back()"
-      class="block md:hidden object-cover absolute left-3 top-10 cursor-pointer"
+      class="block md:hidden object-cover absolute left-3 top-9 cursor-pointer"
       src="../../assets/images/mobile-arrow.png"
       alt="back-icon"
     />
