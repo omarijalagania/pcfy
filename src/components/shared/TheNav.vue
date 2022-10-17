@@ -3,7 +3,7 @@ export default {}
 </script>
 
 <template>
-  <nav class="mt-20 mb-10">
+  <nav class="my-7 md:mt-20 md:mb-10">
     <ul class="flex space-x-10">
       <li
         class="pb-2"
@@ -16,7 +16,7 @@ export default {}
         >
       </li>
       <li
-        class="pb-2"
+        class="pb-2 hidden md:block"
         :class="
           this.$route.path === '/pc-info' ? 'border-b-2 border-black' : ''
         "

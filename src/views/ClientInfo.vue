@@ -116,12 +116,14 @@ export default {
 
 <template>
   <TheLayout>
-    <section class="bg-white w-[1280px] h-[973px] mb-32 flex justify-center">
+    <section
+      class="bg-white md:w-[1280px] md:h-[973px] md:mb-32 flex justify-center"
+    >
       <form
         @submit.prevent="submitData"
-        class="w-[1024px] relative px-10 pt-20"
+        class="md:w-[1024px] relative pt-10 md:px-10 md:pt-20"
       >
-        <div class="flex justify-between items-center">
+        <div class="flex flex-col md:flex-row justify-between items-center">
           <div class="flex flex-col space-y-1">
             <label
               :class="{ 'text-red-500': v$.name.$error }"
@@ -153,7 +155,7 @@ export default {
               </div>
             </div>
           </div>
-          <div class="flex flex-col space-y-1">
+          <div class="flex mt-5 md:mt-0 flex-col space-y-1">
             <label
               :class="{ 'text-red-500': v$.surname.$error }"
               class="font-medium text-lg"
@@ -188,7 +190,7 @@ export default {
         <select
           name="team"
           id="team"
-          class="h-[60px] bg-lightGray outline-none border-2 px-5 mt-[52px] w-full"
+          class="h-[60px] bg-lightGray outline-none border-2 mx-5 px-5 mt-[40px] md:mt-[52px] w-[360px] md:mx-0 md:w-full"
           :class="{ 'border-red-500': v$.team.$error }"
           v-model="v$.team.$model"
         >
@@ -200,7 +202,7 @@ export default {
 
         <select
           v-model="v$.position.$model"
-          class="h-[60px] my-[52px] px-5 outline-none border-2 bg-lightGray w-full"
+          class="h-[60px] mb-[30px] md:mb-0 md:my-[52px] px-5 outline-none border-2 bg-lightGray mx-5 mt-[40px] md:mt-[52px] w-[360px] md:mx-0 md:w-full"
           :class="{ 'border-red-500': v$.position.$error }"
         >
           <option disabled value="">პოზიცია</option>
@@ -216,12 +218,12 @@ export default {
         <div class="flex flex-col space-y-1">
           <label
             :class="{ 'text-red-500': v$.email.$error }"
-            class="font-medium text-lg"
+            class="font-medium px-5 md:px-0 text-lg"
             for="email"
             >მეილი</label
           >
           <input
-            class="h-[60px] w-full border-blue-400 border-2 px-4 outline-none rounded-md"
+            class="h-[60px] w-[360px] mx-auto md:mx-0 md:w-full border-blue-400 border-2 px-4 outline-none rounded-md"
             :class="{ '!border-red-500': v$.email.$error }"
             placeholder="grish666@redberry.ge"
             type="email"
@@ -233,12 +235,12 @@ export default {
             <p
               v-for="(error, index) of v$.email.$errors"
               :key="index"
-              class="font-light text-sm text-red-500"
+              class="font-light px-5 md:px-0 text-sm text-red-500"
             >
               {{ error.$message }}
             </p>
             <div v-if="v$.email.$errors.length === 0" class="h-1">
-              <p class="font-light text-sm text-gray-500">
+              <p class="font-light px-5 md:px-0 text-sm text-gray-500">
                 უნდა მთავრდებოდეს @redberry.ge-ით
               </p>
             </div>
@@ -248,12 +250,12 @@ export default {
         <div class="flex flex-col mt-[52px] mb-[100px] space-y-1">
           <label
             :class="{ 'text-red-500': v$.phone_number.$error }"
-            class="font-medium text-lg"
+            class="font-medium px-5 md:px-0 text-lg"
             for="phone_number"
             >ტელეფონის ნომერი</label
           >
           <input
-            class="h-[60px] w-full border-blue-400 border-2 px-4 outline-none rounded-md"
+            class="h-[60px] w-[360px] mx-auto md:mx-0 md:w-full border-blue-400 border-2 px-4 outline-none rounded-md"
             :class="{ '!border-red-500': v$.phone_number.$error }"
             placeholder="+995 598 00 07 01"
             type="text"
@@ -265,19 +267,19 @@ export default {
             <p
               v-for="(error, index) of v$.phone_number.$errors"
               :key="index"
-              class="font-light text-sm text-red-500"
+              class="font-light px-5 md:px-0 text-sm text-red-500"
             >
               {{ error.$message }}
             </p>
             <div v-if="v$.phone_number.$errors.length === 0" class="h-1">
-              <p class="font-light text-sm text-gray-500">
+              <p class="font-light px-5 md:px-0 text-sm text-gray-500">
                 უნდა აკმაყოფილებდეს ქართული მობ-ნომრის ფორმატს
               </p>
             </div>
           </div>
         </div>
-        <div class="flex justify-end">
-          <TheButton width="w-[176px]" name="შემდეგი" />
+        <div class="flex justify-end mb-5 md:mb-0 px-5 md:px-0">
+          <TheButton width="w-[132px] md:w-[176px]" name="შემდეგი" />
         </div>
       </form>
     </section>
