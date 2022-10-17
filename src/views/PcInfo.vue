@@ -112,10 +112,10 @@ export default {
 
 <template>
   <TheLayout>
-    <section class="bg-white w-[1280px] mb-32 flex justify-center">
+    <section class="bg-white w-full md:w-[1280px] md:mb-32 flex justify-center">
       <form
         @submit.prevent="submitPcData"
-        class="w-[1024px] relative px-10 py-20"
+        class="md:w-[1024px] relative md:px-10 md:py-20"
       >
         <div class="flex justify-center w-full mb-3">
           <DropZone
@@ -148,7 +148,9 @@ export default {
             >ატვირთე თავიდან
           </label>
         </div>
-        <div class="flex items-center w-full justify-between">
+        <div
+          class="flex md:flex-row flex-col items-center w-full justify-between"
+        >
           <div class="flex flex-col space-y-1">
             <label
               :class="{ 'text-red-500': v$.laptop_name.$error }"
@@ -197,12 +199,14 @@ export default {
             </option>
           </select>
         </div>
-        <div class="w-full h-[2px] mt-20 mb-16 bg-[#C7C7C7]" />
-        <div class="flex item-center justify-between">
+        <div
+          class="w-[360px] mx-auto md:mx-0 md:w-full h-[2px] mt-20 mb-16 bg-[#C7C7C7]"
+        />
+        <div class="flex md:flex-row flex-col item-center justify-between">
           <select
             name="laptop_cpu"
             id="laptop_cpu"
-            class="h-[60px] bg-lightGray outline-none border-2 px-5 mt-[36px] w-[280px]"
+            class="h-[60px] bg-lightGray outline-none border-2 px-5 mt-[36px] w-[360px] md:w-[280px]"
             :class="{ 'border-red-500': v$.laptop_cpu.$error }"
             v-model="v$.laptop_cpu.$model"
           >
@@ -219,7 +223,7 @@ export default {
               >CPU ბირთვი</label
             >
             <input
-              class="h-[60px] w-[270px] border-blue-400 border-2 px-4 outline-none rounded-md"
+              class="h-[60px] w-[360px] md:w-[270px] border-blue-400 border-2 px-4 outline-none rounded-md"
               :class="{ '!border-red-500': v$.laptop_cpu_cores.$error }"
               v-model="v$.laptop_cpu_cores.$model"
               placeholder="16"
@@ -248,7 +252,7 @@ export default {
               >CPU-ს ნაკადი</label
             >
             <input
-              class="h-[60px] w-[270px] border-blue-400 border-2 px-4 outline-none rounded-md"
+              class="h-[60px] w-[360px] md:w-[270px] border-blue-400 border-2 px-4 outline-none rounded-md"
               :class="{ '!border-red-500': v$.laptop_cpu_threads.$error }"
               v-model="v$.laptop_cpu_threads.$model"
               placeholder="0000"
@@ -273,7 +277,7 @@ export default {
             </div>
           </div>
         </div>
-        <div class="flex mt-28">
+        <div class="flex md:flex-row flex-col mt-28">
           <div class="flex flex-col space-y-1">
             <label
               :class="{ 'text-red-500': v$.laptop_ram.$error }"
@@ -282,7 +286,7 @@ export default {
               >ლეპტოპის RAM (GB)</label
             >
             <input
-              class="h-[60px] w-[400px] border-blue-400 border-2 px-4 outline-none rounded-md"
+              class="h-[60px] w-[360px] md:w-[400px] border-blue-400 border-2 px-4 outline-none rounded-md"
               :class="{ '!border-red-500': v$.laptop_ram.$error }"
               v-model="v$.laptop_ram.$model"
               placeholder="16"
@@ -337,9 +341,11 @@ export default {
             </div>
           </div>
         </div>
-        <div class="w-full h-[2px] mt-20 mb-16 bg-[#C7C7C7]" />
+        <div
+          class="w-[360px] mx-auto md:mx-0 md:w-full h-[2px] mt-20 mb-16 bg-[#C7C7C7]"
+        />
 
-        <div class="flex items-center justify-between">
+        <div class="flex md:flex-row flex-col items-center justify-between">
           <div class="flex flex-col space-y-1">
             <label class="font-medium text-lg" for="laptop_purchase_date"
               >შეძენის რიცხვი (არჩევითი)</label

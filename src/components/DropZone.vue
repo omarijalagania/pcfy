@@ -25,7 +25,7 @@ export default {
       'border-none bg-gray-100': this.showUpload,
       '!bg-red-50 !border-2 !border-red-500': this.isError && !this.showUpload,
     }"
-    class="border-2 border-dashed border-blue-400 bg-white rounded-md h-[425px] w-full flex flex-col items-center justify-center"
+    class="border-2 border-dashed border-blue-400 bg-white rounded-md md:h-[425px] h-[244px] w-[360px] md:w-full flex flex-col items-center justify-center"
   >
     <span
       v-if="!this.showUpload"
