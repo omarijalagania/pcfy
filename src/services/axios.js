@@ -19,3 +19,12 @@ export const getCpus = async () => {
   const response = await request.get("/cpus")
   return response.data.data
 }
+
+export const addLaptop = async (laptop) => {
+  const response = await request.post("/laptop/create", laptop, {
+    headers: {
+      "Content-Type": "multipart/form-data",
+    },
+  })
+  return response.data.data
+}

@@ -32,6 +32,7 @@ export default {
       laptop_image: "",
       showUploadAgain: false,
       isError: false,
+      localStorageData: {},
     }
   },
   validations() {
@@ -60,6 +61,33 @@ export default {
     selectedFile() {
       this.laptop_image = document.querySelector(".dropzoneFile").files[0]
       this.showUploadAgain = true
+    },
+
+    async addLaptop() {
+      const data = {
+        name: this.localStorageData.name,
+        surname: this.localStorageData.surname,
+        team_id: this.localStorageData.team,
+        position_id: this.localStorageData.position,
+        phone_number: this.localStorageData.phone_number,
+        email: this.localStorageData.email,
+        token: process.env.VUE_APP_TOKEN,
+        laptop_name: this.localStorageData.laptop_name,
+        laptop_cpu: this.localStorageData.laptop_cpu,
+        laptop_cpu_cores: this.localStorageData.laptop_cpu_cores,
+        laptop_cpu_threads: this.localStorageData.laptop_cpu_threads,
+        laptop_ram: this.localStorageData.laptop_ram,
+        laptop_hard_drive_type: this.localStorageData.laptop_hard_drive_type,
+        laptop_purchase_date: this.localStorageData.laptop_purchase_date,
+        laptop_price: this.localStorageData.laptop_price,
+        laptop_state: this.localStorageData.laptop_state,
+      }
+      const formData = new FormData()
+      formData.append("file", this.laptop_image)
+      formData.append("data", JSON.stringify(data))
+
+      const response = await this.addLaptop(formData)
+      console.log(response)
     },
   },
   watch: {
@@ -100,6 +128,7 @@ export default {
     },
   },
   async created() {
+    this.localStorageData = JSON.parse(localStorage.getItem("vuex"))
     try {
       this.brands = await getBrands()
       this.cpus = await getCpus()
@@ -207,7 +236,7 @@ export default {
           <select
             name="laptop_cpu"
             id="laptop_cpu"
-            class="h-[60px] appearance-none bg-lightGray outline-none border-2 px-5 md:mt-[36px] w-[360px] md:w-[280px]"
+            class="h-[60px] appearance-none bg-lightGray outline-none border-2 px-5 md:mt-[53px] w-[360px] md:w-[280px]"
             :class="{ 'border-redError': v$.laptop_cpu.$error }"
             v-model="v$.laptop_cpu.$model"
           >
@@ -248,7 +277,7 @@ export default {
           <div class="flex flex-col space-y-1">
             <label
               :class="{ 'text-redError': v$.laptop_cpu_threads.$error }"
-              class="font-medium text-lg mt-7"
+              class="font-medium text-lg mt-7 md:mt-5"
               for="laptop_name"
               >CPU-ს ნაკადი</label
             >
@@ -444,7 +473,11 @@ export default {
           >
             უკან
           </p>
-          <TheButton width="w-[162px] md:w-[219px]" name="დამახსოვრება" />
+          <TheButton
+            @click="addLaptop"
+            width="w-[162px] md:w-[219px]"
+            name="დამახსოვრება"
+          />
         </div>
       </form>
     </section>
