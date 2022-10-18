@@ -190,7 +190,7 @@ export default {
         <select
           name="team"
           id="team"
-          class="h-[60px] bg-lightGray outline-none border-2 mx-5 px-5 mt-[40px] md:mt-[52px] w-[360px] md:mx-0 md:w-full"
+          class="h-[60px] appearance-none bg-lightGray outline-none border-2 mx-5 px-5 mt-[40px] md:mt-[52px] w-[360px] md:mx-0 md:w-full"
           :class="{ 'border-red-500': v$.team.$error }"
           v-model="v$.team.$model"
         >
@@ -202,7 +202,7 @@ export default {
 
         <select
           v-model="v$.position.$model"
-          class="h-[60px] mb-[30px] md:mb-0 md:my-[52px] px-5 outline-none border-2 bg-lightGray mx-5 mt-[40px] md:mt-[52px] w-[360px] md:mx-0 md:w-full"
+          class="h-[60px] appearance-none mb-[30px] md:mb-0 md:my-[52px] px-5 outline-none border-2 bg-lightGray mx-5 mt-[40px] md:mt-[52px] w-[360px] md:mx-0 md:w-full"
           :class="{ 'border-red-500': v$.position.$error }"
         >
           <option disabled value="">პოზიცია</option>

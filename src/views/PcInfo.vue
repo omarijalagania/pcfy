@@ -186,7 +186,7 @@ export default {
           <select
             name="brand"
             id="brand"
-            class="h-[60px] bg-lightGray outline-none border-2 px-5 mt-10 md:mt-[20px] w-[360px]"
+            class="h-[60px] appearance-none bg-lightGray outline-none border-2 px-5 mt-10 md:mt-[20px] w-[360px]"
             :class="{ 'border-red-500': v$.brand.$error }"
             v-model="v$.brand.$model"
           >
@@ -207,7 +207,7 @@ export default {
           <select
             name="laptop_cpu"
             id="laptop_cpu"
-            class="h-[60px] bg-lightGray outline-none border-2 px-5 md:mt-[36px] w-[360px] md:w-[280px]"
+            class="h-[60px] appearance-none bg-lightGray outline-none border-2 px-5 md:mt-[36px] w-[360px] md:w-[280px]"
             :class="{ 'border-red-500': v$.laptop_cpu.$error }"
             v-model="v$.laptop_cpu.$model"
           >
