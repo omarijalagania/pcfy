@@ -119,6 +119,7 @@ export default {
       >
         <div class="flex justify-center w-full mb-3">
           <DropZone
+            :laptopImage="this.laptop_image"
             :showUpload="this.showUploadAgain"
             :isError="this.isError"
             @drop.prevent="drop"
@@ -130,7 +131,7 @@ export default {
           class="flex justify-between items-center"
         >
           <div class="flex">
-            <div class="truncate space-x-2 flex max-w-[200px]">
+            <div class="truncate space-x-2 flex max-w-[100px] md:max-w-[200px]">
               <img
                 class="object-cover"
                 src="./../assets/images/check.png"
@@ -143,7 +144,7 @@ export default {
             </p>
           </div>
           <label
-            class="w-[233px] flex text-xl font-medium justify-center items-center rounded-md text-white h-[60px] bg-blue-400"
+            class="w-[187px] md:w-[233px] flex text-lg md:text-xl font-medium justify-center items-center rounded-md text-white h-[46px] md:h-[60px] bg-blue-400"
             for="dropzoneFile"
             >ატვირთე თავიდან
           </label>

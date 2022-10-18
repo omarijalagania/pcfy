@@ -10,7 +10,16 @@ export default {
 
     return { active, toggleActive }
   },
-  props: ["isError", "showUpload"],
+  methods: {
+    imagePreview(file) {
+      let imageUrl = ""
+      if (file) {
+        // eslint-disable-next-line no-unused-vars
+        return (imageUrl = URL.createObjectURL(file))
+      }
+    },
+  },
+  props: ["laptopImage", "isError", "showUpload"],
 }
 </script>
 
@@ -27,6 +36,11 @@ export default {
     }"
     class="border-2 border-dashed border-blue-400 bg-white mt-5 md:mt-0 rounded-md md:h-[425px] h-[244px] w-[360px] md:w-full flex md:flex-col flex-col-reverse items-center justify-center"
   >
+    <img
+      class="object-cover md:h-[425px] h-[244px] w-[360px] md:w-full rounded-md"
+      v-if="this.showUpload"
+      :src="this.imagePreview(this.laptopImage)"
+    />
     <span
       v-if="!this.showUpload"
       class="font-normal md:font-semibold text-base md:text-xl text-specialBlue md:mb-3"
