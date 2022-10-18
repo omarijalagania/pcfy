@@ -53,11 +53,11 @@ export default {
     >
     <label
       v-if="!this.showUpload"
-      class="w-[233px] flex text-xl font-medium justify-center items-center rounded-md text-white h-[60px] md:bg-blue-400"
+      class="w-[233px] relative flex text-xl font-medium justify-center items-center rounded-md text-white h-[60px] md:bg-blue-400"
       for="dropzoneFile"
       >ატვირთე
       <img
-        class="mr-auto block md:hidden mb-6"
+        class="block absolute left-1/2 -translate-x-1/2 md:hidden mb-6"
         src="../assets/images/dslr.png"
       />
     </label>

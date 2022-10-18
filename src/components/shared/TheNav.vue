@@ -3,7 +3,7 @@ export default {}
 </script>
 
 <template>
-  <nav class="my-7 md:mt-20 md:mb-10">
+  <nav class="mt-7 md:mt-20 md:mb-10">
     <ul class="flex md:space-x-10">
       <li
         class="pb-2"
