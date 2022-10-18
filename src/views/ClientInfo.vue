@@ -126,14 +126,14 @@ export default {
         <div class="flex flex-col md:flex-row justify-between items-center">
           <div class="flex flex-col space-y-1">
             <label
-              :class="{ 'text-red-500': v$.name.$error }"
+              :class="{ 'text-redError': v$.name.$error }"
               class="font-medium text-lg"
               for="name"
               >სახელი</label
             >
             <input
               class="h-[60px] w-[360px] border-blue-400 border-2 px-4 outline-none rounded-md"
-              :class="{ '!border-red-500': v$.name.$error }"
+              :class="{ '!border-redError': v$.name.$error }"
               v-model="v$.name.$model"
               placeholder="გრიშა"
               type="text"
@@ -144,7 +144,7 @@ export default {
               <p
                 v-for="(error, index) of v$.name.$errors"
                 :key="index"
-                class="font-light text-sm text-red-500"
+                class="font-light text-sm text-redError"
               >
                 {{ error.$message }}
               </p>
@@ -157,14 +157,14 @@ export default {
           </div>
           <div class="flex mt-8 md:mt-0 flex-col space-y-1">
             <label
-              :class="{ 'text-red-500': v$.surname.$error }"
+              :class="{ 'text-redError': v$.surname.$error }"
               class="font-medium text-lg"
               for="surname"
               >გვარი</label
             >
             <input
               class="h-[60px] w-[360px] border-blue-400 border-2 px-4 outline-none rounded-md"
-              :class="{ '!border-red-500': v$.surname.$error }"
+              :class="{ '!border-redError': v$.surname.$error }"
               placeholder="ბაგრატიონი"
               v-model="v$.surname.$model"
               type="text"
@@ -175,7 +175,7 @@ export default {
               <p
                 v-for="(error, index) of v$.surname.$errors"
                 :key="index"
-                class="font-light text-sm text-red-500"
+                class="font-light text-sm text-redError"
               >
                 {{ error.$message }}
               </p>
@@ -191,7 +191,7 @@ export default {
           name="team"
           id="team"
           class="h-[60px] appearance-none bg-lightGray outline-none border-2 mx-5 px-5 mt-[40px] md:mt-[52px] w-[360px] md:mx-0 md:w-full"
-          :class="{ 'border-red-500': v$.team.$error }"
+          :class="{ 'border-redError': v$.team.$error }"
           v-model="v$.team.$model"
         >
           <option disabled value="">თიმი</option>
@@ -203,7 +203,7 @@ export default {
         <select
           v-model="v$.position.$model"
           class="h-[60px] appearance-none mb-[30px] md:mb-0 md:my-[52px] px-5 outline-none border-2 bg-lightGray mx-5 mt-[40px] md:mt-[52px] w-[360px] md:mx-0 md:w-full"
-          :class="{ 'border-red-500': v$.position.$error }"
+          :class="{ 'border-redError': v$.position.$error }"
         >
           <option disabled value="">პოზიცია</option>
           <option
@@ -217,14 +217,14 @@ export default {
 
         <div class="flex flex-col space-y-1">
           <label
-            :class="{ 'text-red-500': v$.email.$error }"
+            :class="{ 'text-redError': v$.email.$error }"
             class="font-medium px-5 md:px-0 text-lg"
             for="email"
             >მეილი</label
           >
           <input
             class="h-[60px] w-[360px] mx-auto md:mx-0 md:w-full border-blue-400 border-2 px-4 outline-none rounded-md"
-            :class="{ '!border-red-500': v$.email.$error }"
+            :class="{ '!border-redError': v$.email.$error }"
             placeholder="grish666@redberry.ge"
             type="email"
             id="email"
@@ -235,7 +235,7 @@ export default {
             <p
               v-for="(error, index) of v$.email.$errors"
               :key="index"
-              class="font-light px-5 md:px-0 text-sm text-red-500"
+              class="font-light px-5 md:px-0 text-sm text-redError"
             >
               {{ error.$message }}
             </p>
@@ -249,14 +249,14 @@ export default {
 
         <div class="flex flex-col mt-[52px] mb-[100px] space-y-1">
           <label
-            :class="{ 'text-red-500': v$.phone_number.$error }"
+            :class="{ 'text-redError': v$.phone_number.$error }"
             class="font-medium px-5 md:px-0 text-lg"
             for="phone_number"
             >ტელეფონის ნომერი</label
           >
           <input
             class="h-[60px] w-[360px] mx-auto md:mx-0 md:w-full border-blue-400 border-2 px-4 outline-none rounded-md"
-            :class="{ '!border-red-500': v$.phone_number.$error }"
+            :class="{ '!border-redError': v$.phone_number.$error }"
             placeholder="+995 598 00 07 01"
             type="text"
             id="phone_number"
@@ -267,7 +267,7 @@ export default {
             <p
               v-for="(error, index) of v$.phone_number.$errors"
               :key="index"
-              class="font-light px-5 md:px-0 text-sm text-red-500"
+              class="font-light px-5 md:px-0 text-sm text-redError"
             >
               {{ error.$message }}
             </p>

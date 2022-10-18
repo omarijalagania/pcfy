@@ -154,14 +154,14 @@ export default {
         >
           <div class="flex flex-col mt-7 md:mt-0 space-y-1">
             <label
-              :class="{ 'text-red-500': v$.laptop_name.$error }"
+              :class="{ 'text-redError': v$.laptop_name.$error }"
               class="font-medium text-lg"
               for="laptop_name"
               >ლეპტოპის სახელი</label
             >
             <input
               class="h-[60px] w-[360px] border-blue-400 border-2 px-4 outline-none rounded-md"
-              :class="{ '!border-red-500': v$.laptop_name.$error }"
+              :class="{ '!border-redError': v$.laptop_name.$error }"
               v-model="v$.laptop_name.$model"
               placeholder="HP"
               type="text"
@@ -172,7 +172,7 @@ export default {
               <p
                 v-for="(error, index) of v$.laptop_name.$errors"
                 :key="index"
-                class="font-light text-sm text-red-500"
+                class="font-light text-sm text-redError"
               >
                 {{ error.$message }}
               </p>
@@ -187,7 +187,7 @@ export default {
             name="brand"
             id="brand"
             class="h-[60px] appearance-none bg-lightGray outline-none border-2 px-5 mt-10 md:mt-[20px] w-[360px]"
-            :class="{ 'border-red-500': v$.brand.$error }"
+            :class="{ 'border-redError': v$.brand.$error }"
             v-model="v$.brand.$model"
           >
             <option disabled value="">ლეპტოპის ბრენდი</option>
@@ -208,7 +208,7 @@ export default {
             name="laptop_cpu"
             id="laptop_cpu"
             class="h-[60px] appearance-none bg-lightGray outline-none border-2 px-5 md:mt-[36px] w-[360px] md:w-[280px]"
-            :class="{ 'border-red-500': v$.laptop_cpu.$error }"
+            :class="{ 'border-redError': v$.laptop_cpu.$error }"
             v-model="v$.laptop_cpu.$model"
           >
             <option disabled value="">CPU</option>
@@ -218,14 +218,14 @@ export default {
           </select>
           <div class="flex flex-col space-y-1">
             <label
-              :class="{ 'text-red-500': v$.laptop_cpu_cores.$error }"
+              :class="{ 'text-redError': v$.laptop_cpu_cores.$error }"
               class="font-medium text-lg mt-5"
               for="laptop_name"
               >CPU ბირთვი</label
             >
             <input
               class="h-[60px] w-[360px] md:w-[270px] border-blue-400 border-2 px-4 outline-none rounded-md"
-              :class="{ '!border-red-500': v$.laptop_cpu_cores.$error }"
+              :class="{ '!border-redError': v$.laptop_cpu_cores.$error }"
               v-model="v$.laptop_cpu_cores.$model"
               placeholder="16"
               type="number"
@@ -236,7 +236,7 @@ export default {
               <p
                 v-for="(error, index) of v$.laptop_cpu_cores.$errors"
                 :key="index"
-                class="font-light text-sm text-red-500"
+                class="font-light text-sm text-redError"
               >
                 {{ error.$message }}
               </p>
@@ -247,14 +247,14 @@ export default {
           </div>
           <div class="flex flex-col space-y-1">
             <label
-              :class="{ 'text-red-500': v$.laptop_cpu_threads.$error }"
+              :class="{ 'text-redError': v$.laptop_cpu_threads.$error }"
               class="font-medium text-lg mt-7"
               for="laptop_name"
               >CPU-ს ნაკადი</label
             >
             <input
               class="h-[60px] w-[360px] md:w-[270px] border-blue-400 border-2 px-4 outline-none rounded-md"
-              :class="{ '!border-red-500': v$.laptop_cpu_threads.$error }"
+              :class="{ '!border-redError': v$.laptop_cpu_threads.$error }"
               v-model="v$.laptop_cpu_threads.$model"
               placeholder="0000"
               type="number"
@@ -265,7 +265,7 @@ export default {
               <p
                 v-for="(error, index) of v$.laptop_cpu_threads.$errors"
                 :key="index"
-                class="font-light text-sm text-red-500"
+                class="font-light text-sm text-redError"
               >
                 {{ error.$message }}
               </p>
@@ -281,14 +281,14 @@ export default {
         <div class="flex md:flex-row flex-col mt-7 md:mt-28">
           <div class="flex flex-col space-y-1">
             <label
-              :class="{ 'text-red-500': v$.laptop_ram.$error }"
+              :class="{ 'text-redError': v$.laptop_ram.$error }"
               class="font-medium text-lg"
               for="laptop_name"
               >ლეპტოპის RAM (GB)</label
             >
             <input
               class="h-[60px] w-[360px] md:w-[400px] border-blue-400 border-2 px-4 outline-none rounded-md"
-              :class="{ '!border-red-500': v$.laptop_ram.$error }"
+              :class="{ '!border-redError': v$.laptop_ram.$error }"
               v-model="v$.laptop_ram.$model"
               placeholder="16"
               type="number"
@@ -299,7 +299,7 @@ export default {
               <p
                 v-for="(error, index) of v$.laptop_ram.$errors"
                 :key="index"
-                class="font-light text-sm text-red-500"
+                class="font-light text-sm text-redError"
               >
                 {{ error.$message }}
               </p>
@@ -312,10 +312,16 @@ export default {
           </div>
           <div class="mt-7 md:mt-0 md:ml-20">
             <p
-              :class="{ 'text-red-500': v$.laptop_hard_drive_type.$error }"
-              class="font-medium text-lg"
+              :class="{ 'text-redError': v$.laptop_hard_drive_type.$error }"
+              class="font-medium flex items-center text-lg"
             >
               მეხსიერების ტიპი
+              <img
+                v-if="v$.laptop_hard_drive_type.$error"
+                class="w-5 h-5 ml-3"
+                src="../assets/images/warning.png"
+                alt="warning"
+              />
             </p>
             <div class="flex space-x-12 items-center mt-5">
               <div>
@@ -353,7 +359,7 @@ export default {
             >
             <input
               class="h-[60px] w-[360px] border-blue-400 border-2 px-4 outline-none rounded-md"
-              :class="{ 'border-red-500': v$.laptop_purchase_date.$error }"
+              :class="{ 'border-redError': v$.laptop_purchase_date.$error }"
               v-model="v$.laptop_purchase_date.$model"
               placeholder="დდ / თთ / წწწწ"
               type="date"
@@ -363,7 +369,7 @@ export default {
           </div>
           <div class="flex flex-col space-y-1">
             <label
-              :class="{ 'text-red-500': v$.laptop_price.$error }"
+              :class="{ 'text-redError': v$.laptop_price.$error }"
               class="font-medium mt-7 md:mt-0 text-lg"
               for="laptop_price"
               >ლეპტოპის ფასი</label
@@ -371,7 +377,7 @@ export default {
             <div class="relative">
               <input
                 class="h-[60px] w-[360px] border-blue-400 border-2 px-4 outline-none rounded-md"
-                :class="{ '!border-red-500': v$.laptop_price.$error }"
+                :class="{ '!border-redError': v$.laptop_price.$error }"
                 v-model="v$.laptop_price.$model"
                 placeholder="0000"
                 type="text"
@@ -379,7 +385,7 @@ export default {
                 name="laptop_price"
               />
               <p
-                class="text-gray-400 absolute right-4 top-1/2 -translate-y-1/2"
+                class="text-gray-400 absolute right-5 top-1/2 -translate-y-1/2"
               >
                 ₾
               </p>
@@ -388,7 +394,7 @@ export default {
               <p
                 v-for="(error, index) of v$.laptop_price.$errors"
                 :key="index"
-                class="font-light text-sm text-red-500"
+                class="font-light text-sm text-redError"
               >
                 {{ error.$message }}
               </p>
@@ -400,7 +406,7 @@ export default {
         </div>
         <div class="mt-7 md:mt-24">
           <p
-            :class="{ 'text-red-500': v$.laptop_state.$error }"
+            :class="{ 'text-redError': v$.laptop_state.$error }"
             class="font-medium text-lg"
           >
             ლეპტოპის მდგომარეობა

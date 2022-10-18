@@ -32,7 +32,8 @@ export default {
     :class="{
       'border-green-500 bg-green-100': active,
       'border-none bg-gray-100': this.showUpload,
-      '!bg-red-50 !border-2 !border-red-500': this.isError && !this.showUpload,
+      '!bg-lightRed !border-2 !border-redError':
+        this.isError && !this.showUpload,
     }"
     class="border-2 border-dashed border-blue-400 bg-white mt-5 md:mt-0 rounded-md md:h-[425px] h-[244px] w-[360px] md:w-full flex md:flex-col flex-col-reverse items-center justify-center"
   >
@@ -40,6 +41,12 @@ export default {
       class="object-cover md:h-[425px] h-[244px] w-[360px] md:w-full rounded-md"
       v-if="this.showUpload"
       :src="this.imagePreview(this.laptopImage)"
+    />
+    <img
+      v-if="this.isError"
+      class="w-7 h-7 mt-4 md:mt-0 mb-7"
+      src="../assets/images/warning.png"
+      alt="warning"
     />
     <span
       v-if="!this.showUpload"
@@ -55,7 +62,7 @@ export default {
       v-if="!this.showUpload"
       class="w-[233px] relative flex text-xl font-medium justify-center items-center rounded-md text-white h-[60px] md:bg-blue-400"
       for="dropzoneFile"
-      >ატვირთე
+      ><p class="hidden md:block">ატვირთე</p>
       <img
         class="block absolute left-1/2 -translate-x-1/2 md:hidden mb-6"
         src="../assets/images/dslr.png"
