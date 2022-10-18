@@ -1,5 +1,5 @@
 import axios from "axios"
 
 export const request = axios.create({
-  baseURL: "https://pcfy.redberryinternship.ge/api",
+  baseURL: process.env.VUE_APP_BASE_URL,
 })
