@@ -368,15 +368,22 @@ export default {
               for="laptop_price"
               >ლეპტოპის ფასი</label
             >
-            <input
-              class="h-[60px] w-[360px] border-blue-400 border-2 px-4 outline-none rounded-md"
-              :class="{ '!border-red-500': v$.laptop_price.$error }"
-              v-model="v$.laptop_price.$model"
-              placeholder="0000"
-              type="text"
-              id="laptop_price"
-              name="laptop_price"
-            />
+            <div class="relative">
+              <input
+                class="h-[60px] w-[360px] border-blue-400 border-2 px-4 outline-none rounded-md"
+                :class="{ '!border-red-500': v$.laptop_price.$error }"
+                v-model="v$.laptop_price.$model"
+                placeholder="0000"
+                type="text"
+                id="laptop_price"
+                name="laptop_price"
+              />
+              <p
+                class="text-gray-400 absolute right-4 top-1/2 -translate-y-1/2"
+              >
+                ₾
+              </p>
+            </div>
             <div class="h-1">
               <p
                 v-for="(error, index) of v$.laptop_price.$errors"
