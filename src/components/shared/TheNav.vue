@@ -4,7 +4,7 @@ export default {}
 
 <template>
   <nav class="my-7 md:mt-20 md:mb-10">
-    <ul class="flex space-x-10">
+    <ul class="flex md:space-x-10">
       <li
         class="pb-2"
         :class="
@@ -19,7 +19,7 @@ export default {}
         <p class="block md:hidden text-center text-[#898989]">1/2</p>
       </li>
       <li
-        class="pb-2 hidden md:block"
+        class="pb-2 md:block"
         :class="
           this.$route.path === '/pc-info'
             ? 'md:border-b-2 !block  md:border-black'

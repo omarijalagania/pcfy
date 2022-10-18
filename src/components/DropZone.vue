@@ -25,23 +25,27 @@ export default {
       'border-none bg-gray-100': this.showUpload,
       '!bg-red-50 !border-2 !border-red-500': this.isError && !this.showUpload,
     }"
-    class="border-2 border-dashed border-blue-400 bg-white rounded-md md:h-[425px] h-[244px] w-[360px] md:w-full flex flex-col items-center justify-center"
+    class="border-2 border-dashed border-blue-400 bg-white mt-5 md:mt-0 rounded-md md:h-[425px] h-[244px] w-[360px] md:w-full flex md:flex-col flex-col-reverse items-center justify-center"
   >
     <span
       v-if="!this.showUpload"
-      class="font-semibold text-xl text-specialBlue mb-3"
+      class="font-normal md:font-semibold text-base md:text-xl text-specialBlue md:mb-3"
       >ჩააგდე ან ატვირთე
     </span>
     <span
       v-if="!this.showUpload"
-      class="font-semibold text-xl text-specialBlue mb-16"
+      class="font-normal md:font-semibold text-base md:text-xl text-specialBlue md:mb-16"
       >ლეპტოპის ფოტო</span
     >
     <label
       v-if="!this.showUpload"
-      class="w-[233px] flex text-xl font-medium justify-center items-center rounded-md text-white h-[60px] bg-blue-400"
+      class="w-[233px] flex text-xl font-medium justify-center items-center rounded-md text-white h-[60px] md:bg-blue-400"
       for="dropzoneFile"
       >ატვირთე
+      <img
+        class="mr-auto block md:hidden mb-6"
+        src="../assets/images/dslr.png"
+      />
     </label>
     <input
       accept=".png, .jpg, .jpeg"

@@ -151,7 +151,7 @@ export default {
         <div
           class="flex md:flex-row flex-col items-center w-full justify-between"
         >
-          <div class="flex flex-col space-y-1">
+          <div class="flex flex-col mt-7 md:mt-0 space-y-1">
             <label
               :class="{ 'text-red-500': v$.laptop_name.$error }"
               class="font-medium text-lg"
@@ -185,7 +185,7 @@ export default {
           <select
             name="brand"
             id="brand"
-            class="h-[60px] bg-lightGray outline-none border-2 px-5 mt-[20px] w-[360px]"
+            class="h-[60px] bg-lightGray outline-none border-2 px-5 mt-10 md:mt-[20px] w-[360px]"
             :class="{ 'border-red-500': v$.brand.$error }"
             v-model="v$.brand.$model"
           >
@@ -200,13 +200,13 @@ export default {
           </select>
         </div>
         <div
-          class="w-[360px] mx-auto md:mx-0 md:w-full h-[2px] mt-20 mb-16 bg-[#C7C7C7]"
+          class="w-[360px] mx-auto md:mx-0 md:w-full h-[2px] md:mt-20 my-8 md:mb-16 bg-[#C7C7C7]"
         />
         <div class="flex md:flex-row flex-col item-center justify-between">
           <select
             name="laptop_cpu"
             id="laptop_cpu"
-            class="h-[60px] bg-lightGray outline-none border-2 px-5 mt-[36px] w-[360px] md:w-[280px]"
+            class="h-[60px] bg-lightGray outline-none border-2 px-5 md:mt-[36px] w-[360px] md:w-[280px]"
             :class="{ 'border-red-500': v$.laptop_cpu.$error }"
             v-model="v$.laptop_cpu.$model"
           >
@@ -218,7 +218,7 @@ export default {
           <div class="flex flex-col space-y-1">
             <label
               :class="{ 'text-red-500': v$.laptop_cpu_cores.$error }"
-              class="font-medium text-lg"
+              class="font-medium text-lg mt-5"
               for="laptop_name"
               >CPU ბირთვი</label
             >
@@ -247,7 +247,7 @@ export default {
           <div class="flex flex-col space-y-1">
             <label
               :class="{ 'text-red-500': v$.laptop_cpu_threads.$error }"
-              class="font-medium text-lg"
+              class="font-medium text-lg mt-7"
               for="laptop_name"
               >CPU-ს ნაკადი</label
             >
@@ -277,7 +277,7 @@ export default {
             </div>
           </div>
         </div>
-        <div class="flex md:flex-row flex-col mt-28">
+        <div class="flex md:flex-row flex-col mt-7 md:mt-28">
           <div class="flex flex-col space-y-1">
             <label
               :class="{ 'text-red-500': v$.laptop_ram.$error }"
@@ -309,7 +309,7 @@ export default {
               </div>
             </div>
           </div>
-          <div class="ml-20">
+          <div class="mt-7 md:mt-0 md:ml-20">
             <p
               :class="{ 'text-red-500': v$.laptop_hard_drive_type.$error }"
               class="font-medium text-lg"
@@ -342,7 +342,7 @@ export default {
           </div>
         </div>
         <div
-          class="w-[360px] mx-auto md:mx-0 md:w-full h-[2px] mt-20 mb-16 bg-[#C7C7C7]"
+          class="w-[360px] mx-auto md:mx-0 md:w-full h-[2px] my-7 md:my-0 md:mt-20 md:mb-16 bg-[#C7C7C7]"
         />
 
         <div class="flex md:flex-row flex-col items-center justify-between">
@@ -363,7 +363,7 @@ export default {
           <div class="flex flex-col space-y-1">
             <label
               :class="{ 'text-red-500': v$.laptop_price.$error }"
-              class="font-medium text-lg"
+              class="font-medium mt-7 md:mt-0 text-lg"
               for="laptop_price"
               >ლეპტოპის ფასი</label
             >
@@ -390,7 +390,7 @@ export default {
             </div>
           </div>
         </div>
-        <div class="mt-24">
+        <div class="mt-7 md:mt-24">
           <p
             :class="{ 'text-red-500': v$.laptop_state.$error }"
             class="font-medium text-lg"
@@ -423,14 +423,14 @@ export default {
             </div>
           </div>
         </div>
-        <div class="flex justify-between items-center mt-24">
+        <div class="flex justify-between items-center mb-10 md:mb-0 mt-24">
           <p
             @click="this.$router.push('/client-info')"
             class="font-medium text-lg text-blue-400 cursor-pointer"
           >
             უკან
           </p>
-          <TheButton width="w-[219px]" name="დამახსოვრება" />
+          <TheButton width="w-[162px] md:w-[219px]" name="დამახსოვრება" />
         </div>
       </form>
     </section>

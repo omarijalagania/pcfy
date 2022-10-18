@@ -155,7 +155,7 @@ export default {
               </div>
             </div>
           </div>
-          <div class="flex mt-5 md:mt-0 flex-col space-y-1">
+          <div class="flex mt-8 md:mt-0 flex-col space-y-1">
             <label
               :class="{ 'text-red-500': v$.surname.$error }"
               class="font-medium text-lg"
