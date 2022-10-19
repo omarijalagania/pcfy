@@ -32,7 +32,11 @@ export default {
           width="w-96"
           name="ᲩᲐᲜᲐᲬᲔᲠᲘᲡ ᲓᲐᲛᲐᲢᲔᲑᲐ"
         />
-        <TheButton width="w-96" name="ᲩᲐᲜᲐᲬᲔᲠᲔᲑᲘᲡ ᲡᲘᲐ" />
+        <TheButton
+          @click="this.$router.push('/list')"
+          width="w-96"
+          name="ᲩᲐᲜᲐᲬᲔᲠᲔᲑᲘᲡ ᲡᲘᲐ"
+        />
       </div>
     </div>
   </div>

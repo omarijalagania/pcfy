@@ -8,7 +8,10 @@ export default {
 </script>
 
 <template>
-  <div class="min-h-screen flex flex-col items-center bg-gray-200">
+  <div
+    :class="this.$route.path === '/list' ? '!bg-white' : ''"
+    class="min-h-screen flex flex-col items-center bg-gray-200"
+  >
     <img
       @click="this.$router.back()"
       class="hidden md:block object-cover absolute left-16 top-12 cursor-pointer"

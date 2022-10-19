@@ -4,7 +4,13 @@ export default {}
 
 <template>
   <nav class="mt-7 md:mt-20 md:mb-10">
-    <ul class="flex md:space-x-10">
+    <h2
+      v-if="this.$route.path === '/list'"
+      class="font-bold text-3xl text-center"
+    >
+      ᲩᲐᲜᲐᲬᲔᲠᲔᲑᲘᲡ ᲡᲘᲐ
+    </h2>
+    <ul v-if="this.$route.path !== '/list'" class="flex md:space-x-10">
       <li
         class="pb-2"
         :class="
