@@ -1,22 +1,18 @@
 <script>
-export default {
-  created() {
-    console.log(this.$route.params.id)
-  },
-}
+export default {}
 </script>
 
 <template>
   <nav class="mt-7 md:mt-20 md:mb-10">
     <h2
       v-if="this.$route.path === '/list'"
-      class="font-bold text-3xl text-center"
+      class="font-bold text-lg md:text-3xl text-center"
     >
       ᲩᲐᲜᲐᲬᲔᲠᲔᲑᲘᲡ ᲡᲘᲐ
     </h2>
     <h2
       v-if="this.$route.path === `/laptop/${this.$route.params.id}`"
-      class="font-bold text-3xl text-center"
+      class="font-bold text-lg md:text-3xl text-center"
     >
       ᲚᲔᲞᲢᲝᲞᲘᲡ ᲘᲜᲤᲝ
     </h2>
