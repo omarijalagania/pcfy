@@ -1,5 +1,12 @@
 <script>
-export default {}
+export default {
+  props: ["laptop"],
+  data() {
+    return {
+      url: process.env.VUE_APP_IMG_URL,
+    }
+  },
+}
 </script>
 
 <template>
@@ -9,16 +16,20 @@ export default {}
     <div class="p-3 flex items-center justify-around rounded-md">
       <img
         class="w-[164px] md:w-[266px] h-[108px] md:h-[178px] rounded-md object-cover"
-        src="https://images.unsplash.com/photo-1661961110372-8a7682543120?ixlib=rb-4.0.3&ixid=MnwxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=640&q=80"
+        :src="`${this.url}${laptop.laptop.image}`"
         alt="pc"
       />
       <div
         class="flex w-1/2 flex-col space-y-2 md:space-y-9 ml-7 justify-center"
       >
-        <p class="font-medium text-sm md:text-lg">ირინე ჩანქსელიანი</p>
-        <p class="font-normal text-sm md:text-lg">Pentium II</p>
+        <p class="font-medium text-sm md:text-lg truncate">
+          {{ laptop.user.name + " " + laptop.user.surname }}
+        </p>
+        <p class="font-normal text-sm md:text-lg truncate">
+          {{ laptop.laptop.name }}
+        </p>
         <router-link
-          to="/"
+          :to="`/laptop/${laptop.laptop.id}`"
           class="cursor-pointer text-sm text-specialBlue underline"
           >მეტის ნახვა</router-link
         >

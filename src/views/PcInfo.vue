@@ -5,6 +5,7 @@ import { pcValidation } from "../validations/pcValidation"
 import { getBrands, getCpus } from "@/services/axios"
 import TheButton from "@/components/shared/TheButton.vue"
 import DropZone from "@/components/DropZone.vue"
+import { addLaptop } from "../services/axios"
 
 export default {
   components: {
@@ -33,6 +34,7 @@ export default {
       showUploadAgain: false,
       isError: false,
       localStorageData: {},
+      filteredCpu: [],
     }
   },
   validations() {
@@ -44,9 +46,44 @@ export default {
     async submitPcData() {
       const result = await this.v$.$validate()
 
-      if (result || this.laptop_image !== "") {
+      if (
+        result ||
+        this.laptop_image !== "" ||
+        this.$store.state.validateClient !== true
+      ) {
         this.isError = false
-        console.log("success")
+        const data = {
+          name: this.localStorageData.name,
+          surname: this.localStorageData.surname,
+          team_id: this.localStorageData.team,
+          position_id: this.localStorageData.position,
+          phone_number: this.localStorageData.phone_number,
+          email: this.localStorageData.email,
+          token: process.env.VUE_APP_TOKEN,
+          laptop_name: this.localStorageData.laptop_name,
+          laptop_cpu: this.filteredCpu[0].name,
+          laptop_cpu_cores: this.localStorageData.laptop_cpu_cores,
+          laptop_cpu_threads: this.localStorageData.laptop_cpu_threads,
+          laptop_ram: this.localStorageData.laptop_ram,
+          laptop_hard_drive_type: this.localStorageData.laptop_hard_drive_type,
+          laptop_purchase_date: this.localStorageData.laptop_purchase_date,
+          laptop_price: +this.localStorageData.laptop_price,
+          laptop_image: this.laptop_image,
+          laptop_brand_id: this.localStorageData.brand,
+          laptop_state:
+            this.localStorageData.laptop_state === "ახალი" ? "new" : "used",
+        }
+
+        try {
+          const formData = new FormData()
+          formData.append("data", JSON.stringify(data))
+          console.log(data)
+          if (this.localStorageData !== {}) {
+            addLaptop(data)
+          }
+        } catch (error) {
+          console.log(error)
+        }
       } else {
         this.isError = true
         console.log("error")
@@ -61,33 +98,6 @@ export default {
     selectedFile() {
       this.laptop_image = document.querySelector(".dropzoneFile").files[0]
       this.showUploadAgain = true
-    },
-
-    async addLaptop() {
-      const data = {
-        name: this.localStorageData.name,
-        surname: this.localStorageData.surname,
-        team_id: this.localStorageData.team,
-        position_id: this.localStorageData.position,
-        phone_number: this.localStorageData.phone_number,
-        email: this.localStorageData.email,
-        token: process.env.VUE_APP_TOKEN,
-        laptop_name: this.localStorageData.laptop_name,
-        laptop_cpu: this.localStorageData.laptop_cpu,
-        laptop_cpu_cores: this.localStorageData.laptop_cpu_cores,
-        laptop_cpu_threads: this.localStorageData.laptop_cpu_threads,
-        laptop_ram: this.localStorageData.laptop_ram,
-        laptop_hard_drive_type: this.localStorageData.laptop_hard_drive_type,
-        laptop_purchase_date: this.localStorageData.laptop_purchase_date,
-        laptop_price: this.localStorageData.laptop_price,
-        laptop_state: this.localStorageData.laptop_state,
-      }
-      const formData = new FormData()
-      formData.append("file", this.laptop_image)
-      formData.append("data", JSON.stringify(data))
-
-      const response = await this.addLaptop(formData)
-      console.log(response)
     },
   },
   watch: {
@@ -135,6 +145,11 @@ export default {
     } catch (error) {
       console.log(error)
     }
+    if (this.localStorageData !== {}) {
+      this.filteredCpu = this.cpus.filter(
+        (cpu) => cpu.id === this.localStorageData.laptop_cpu,
+      )
+    }
   },
 }
 </script>
@@ -143,6 +158,7 @@ export default {
   <TheLayout>
     <section class="bg-white w-full md:w-[1280px] md:mb-32 flex justify-center">
       <form
+        encType="multipart/form-data"
         @submit.prevent="submitPcData"
         class="md:w-[1024px] relative md:px-10 md:py-20"
       >
@@ -473,11 +489,7 @@ export default {
           >
             უკან
           </p>
-          <TheButton
-            @click="addLaptop"
-            width="w-[162px] md:w-[219px]"
-            name="დამახსოვრება"
-          />
+          <TheButton width="w-[162px] md:w-[219px]" name="დამახსოვრება" />
         </div>
       </form>
     </section>

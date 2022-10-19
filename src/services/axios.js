@@ -28,3 +28,15 @@ export const addLaptop = async (laptop) => {
   })
   return response.data.data
 }
+
+export const getLaptops = async () => {
+  const response = await request.get(
+    `/laptops?token=${process.env.VUE_APP_TOKEN}`,
+  )
+  return response.data.data
+}
+
+export const getOneLaptop = async (data) => {
+  const response = await request.get(`/laptop/${data.id}?token=${data.token}`)
+  return response.data.data
+}
