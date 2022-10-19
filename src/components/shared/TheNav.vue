@@ -1,5 +1,9 @@
 <script>
-export default {}
+export default {
+  created() {
+    console.log(this.$route.params.id)
+  },
+}
 </script>
 
 <template>
@@ -10,7 +14,19 @@ export default {}
     >
       ᲩᲐᲜᲐᲬᲔᲠᲔᲑᲘᲡ ᲡᲘᲐ
     </h2>
-    <ul v-if="this.$route.path !== '/list'" class="flex md:space-x-10">
+    <h2
+      v-if="this.$route.path === `/laptop/${this.$route.params.id}`"
+      class="font-bold text-3xl text-center"
+    >
+      ᲚᲔᲞᲢᲝᲞᲘᲡ ᲘᲜᲤᲝ
+    </h2>
+    <ul
+      v-if="
+        this.$route.path !== '/list' &&
+        this.$route.path !== `/laptop/${this.$route.params.id}`
+      "
+      class="flex md:space-x-10"
+    >
       <li
         class="pb-2"
         :class="

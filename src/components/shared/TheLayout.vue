@@ -9,7 +9,12 @@ export default {
 
 <template>
   <div
-    :class="this.$route.path === '/list' ? '!bg-white' : ''"
+    :class="
+      this.$route.path === '/list' ||
+      this.$route.path === `/laptop/${this.$route.params.id}`
+        ? '!bg-white'
+        : ''
+    "
     class="min-h-screen flex flex-col items-center bg-gray-200"
   >
     <img
