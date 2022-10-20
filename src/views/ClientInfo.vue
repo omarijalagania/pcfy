@@ -24,6 +24,7 @@ export default {
       team: this.$store.state.team,
       position: this.$store.state.position,
       isValid: false,
+      filteredSelectedTeam: [],
     }
   },
 
@@ -86,6 +87,9 @@ export default {
       } else {
         this.$store.commit("validateClient", true)
       }
+      this.filteredSelectedTeam = this.positions.filter(
+        (team) => team.team_id === this.team,
+      )
     },
     position() {
       this.$store.commit("addPosition", this.position)
@@ -107,6 +111,8 @@ export default {
     try {
       this.teams = await getTeams()
       this.positions = await getPositions()
+      console.log(this.teams)
+      console.log(this.positions)
     } catch (error) {
       console.log(error)
     }
@@ -207,7 +213,7 @@ export default {
         >
           <option disabled value="">პოზიცია</option>
           <option
-            v-for="option in positions"
+            v-for="option in filteredSelectedTeam"
             :key="option.id"
             :value="option.id"
           >
