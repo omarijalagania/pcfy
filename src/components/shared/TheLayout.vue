@@ -4,6 +4,15 @@ export default {
   components: {
     TheNav,
   },
+  methods: {
+    getBack() {
+      this.$router.go(-1)
+      setInterval(() => {
+        window.location.reload()
+      }, 100)
+      clearInterval()
+    },
+  },
 }
 </script>
 
@@ -18,13 +27,14 @@ export default {
     class="min-h-screen flex flex-col items-center bg-gray-200"
   >
     <img
-      @click="this.$router.back()"
+      @click="this.getBack()"
       class="hidden md:block object-cover absolute left-16 top-12 cursor-pointer"
       src="../../assets/images/back.png"
       alt="back-icon"
     />
+
     <img
-      @click="this.$router.back()"
+      @click="this.getBack()"
       class="block md:hidden object-cover absolute left-3 top-9 cursor-pointer"
       src="../../assets/images/mobile-arrow.png"
       alt="back-icon"

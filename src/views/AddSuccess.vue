@@ -12,7 +12,10 @@ export default {
     <h2 class="font-bold text-2xl mb-16">ჩანაწერი დამატებულია!</h2>
     <TheButton width="w-[297px]" name="სიაში გადაყვანა" />
 
-    <router-link class="mt-7 font-medium text-xl text-[#62A1EB]" to="/"
+    <router-link
+      :key="$route.path"
+      class="mt-7 font-medium text-xl text-[#62A1EB]"
+      to="/"
       >მთავარი</router-link
     >
   </div>

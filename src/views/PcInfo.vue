@@ -75,11 +75,11 @@ export default {
         }
 
         try {
-          const formData = new FormData()
-          formData.append("data", JSON.stringify(data))
-          console.log(data)
           if (this.localStorageData !== {}) {
-            addLaptop(data)
+            const response = await addLaptop(data)
+            if (response.status === 200) {
+              this.$router.push("/success")
+            }
           }
         } catch (error) {
           console.log(error)

@@ -26,7 +26,7 @@ export const addLaptop = async (laptop) => {
       "Content-Type": "multipart/form-data",
     },
   })
-  return response.data.data
+  return response
 }
 
 export const getLaptops = async () => {

@@ -29,6 +29,7 @@ export default {
           {{ laptop.laptop.name }}
         </p>
         <router-link
+          :key="$route.path"
           :to="`/laptop/${laptop.laptop.id}`"
           class="cursor-pointer text-sm text-specialBlue underline"
           >მეტის ნახვა</router-link

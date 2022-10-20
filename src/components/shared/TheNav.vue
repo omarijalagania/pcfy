@@ -31,7 +31,10 @@ export default {}
             : '!hidden md:!block'
         "
       >
-        <router-link class="text-xl font-bold" to="/client-info"
+        <router-link
+          :key="$route.path"
+          class="text-xl font-bold"
+          to="/client-info"
           >თანამშრომლის ინფო</router-link
         >
         <p class="block md:hidden text-center text-[#898989]">1/2</p>
@@ -45,6 +48,7 @@ export default {}
         "
       >
         <router-link
+          :key="$route.path"
           class="text-xl font-bold"
           :to="this.$store.state.validateClient ? '/pc-info' : ''"
           >ლეპტოპის მახასიათებლები</router-link
