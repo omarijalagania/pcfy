@@ -111,8 +111,6 @@ export default {
     try {
       this.teams = await getTeams()
       this.positions = await getPositions()
-      console.log(this.teams)
-      console.log(this.positions)
     } catch (error) {
       console.log(error)
     }
